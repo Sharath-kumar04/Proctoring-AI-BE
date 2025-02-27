@@ -21,8 +21,7 @@ This project is a real-time detection system that uses various computer vision m
 1. Clone the repository:
 
    ```sh
-   git clone [https://github.com/Sharath-kumar04/Proctoring-AI-BE.git](https://github.com/Sharath-kumar04/Proctoring-AI-BE.git)
-   cd Proctoring-AI-BE
+   git clone https://github.com/Sharath-kumar04/Proctoring-AI-BE.git
    ```
 
 2. Install the required packages:
