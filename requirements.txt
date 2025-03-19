@@ -11,3 +11,10 @@ opencv-python-headless
 mediapipe==0.10.5
 torch
 numpy
+mysql-connector-python==8.0.33
+SQLAlchemy==2.0.19
+dlib==19.24.0
+python-multipart
+face-recognition
+python-jose[cryptography]
+passlib[bcrypt]

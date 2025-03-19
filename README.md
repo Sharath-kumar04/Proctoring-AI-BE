@@ -66,8 +66,7 @@ This project is a real-time detection system that uses various computer vision m
 
 ## Project Structure
 
-```
-.
+.```
 ├── detection
 │   ├── face_detection.py
 │   ├── face_mesh_detection.py
