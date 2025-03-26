@@ -6,15 +6,19 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=db
-      - DB_NAME=${DB_NAME}
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_HOST=host.docker.internal
+      - DB_NAME=proctoring_ai
+      - DB_PORT=3306
+      - MYSQL_URL=mysql://root:root@host.docker.internal:3306/proctoring_ai
+      - MYSQL_DATABASE=proctoring_ai
       - JWT_SECRET_KEY=${JWT_SECRET_KEY}
       - JWT_ALGORITHM=${JWT_ALGORITHM}
       - JWT_ACCESS_TOKEN_EXPIRE_MINUTES=${JWT_ACCESS_TOKEN_EXPIRE_MINUTES}
-    depends_on:
-      - db
+      - PORT=8080
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - ./logs:/app/logs
 
