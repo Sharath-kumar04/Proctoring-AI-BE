@@ -22,15 +22,23 @@ def detect_face(frame):
         face_results = face_detection.process(frame_rgb)
         
         if not face_results.detections:
-            event = "Face not detected"
+            event = "Face not visible in frame"
             logger.info(event)
             logs.append({"time": timestamp, "event": event})
         else:
             for detection in face_results.detections:
                 bbox = detection.location_data.relative_bounding_box
-                event = "Unusual face movement detected" if bbox.width > 0.5 else "Face detected"
-                logger.info(f"{event} with confidence {detection.score[0]:.2f}")
-                logs.append({"time": timestamp, "event": event})
+                score = detection.score[0]
+                
+                # Check face position and visibility
+                if bbox.width < 0.15 or bbox.height < 0.15:
+                    logs.append({"time": timestamp, "event": "Face too far from camera"})
+                elif bbox.width > 0.8 or bbox.height > 0.8:
+                    logs.append({"time": timestamp, "event": "Face too close to camera"})
+                elif score < 0.6:
+                    logs.append({"time": timestamp, "event": "Face partially visible"})
+                elif abs(bbox.xmin + bbox.width/2 - 0.5) > 0.3:
+                    logs.append({"time": timestamp, "event": "Face not centered in frame"})
 
     except Exception as e:
         logger.error(f"Face detection error: {str(e)}", exc_info=True)

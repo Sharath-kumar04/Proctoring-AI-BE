@@ -61,6 +61,7 @@ cd Proctoring-AI-BE
 2. Install dependencies:
 ```bash
 pip install -r requirements.txt
+pip install "pydantic[email]"  # Make sure you have pydantic installed
 ```
 
 3. Set up MySQL database:

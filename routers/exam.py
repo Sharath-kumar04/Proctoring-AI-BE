@@ -9,9 +9,11 @@ from sqlalchemy import func
 from typing import Dict, Optional
 from pydantic import BaseModel
 from utils.connection import manager  # Import manager from new module
+from models.detection_categories import DetectionCategories  # Import DetectionCategories
 import secrets
 from routers.auth import create_access_token, get_current_user
 from fastapi.responses import JSONResponse
+from utils.logger import logger  # Add logger import if not present
 
 router = APIRouter()
 security = HTTPBearer()
@@ -179,49 +181,54 @@ async def stop_exam_session(
 @router.get("/summary/{user_id}", response_model=ExamSummary)
 async def get_exam_summary(user_id: int, db: Session = Depends(get_db)):
     """Get exam summary for a user"""
-    
-    # Get all logs except session stop events
-    logs = db.query(Log).filter(
-        Log.user_id == user_id,
-        Log.event_type != "session_stopped"  # Exclude session stop events
-    ).all()
-    
+    logs = db.query(Log).filter(Log.user_id == user_id).all()
     if not logs:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="No exam logs found for this user"
-        )
-    
-    # Calculate duration
+        raise HTTPException(status_code=404, detail="No logs found")
+
     start_time = min(log.timestamp for log in logs)
     end_time = max(log.timestamp for log in logs)
-    duration = (end_time - start_time).total_seconds() / 60  # in minutes
-    
-    # Count suspicious activities
-    suspicious_activities: Dict[str, int] = {}
-    total_checks = len(logs)
-    face_detections = 0
-    
-    # Define non-suspicious events
-    non_suspicious_events = {"face_detected", "session_stopped"}
-    
+    total_duration = (end_time - start_time).total_seconds() / 60
+
+    # Initialize counters
+    devices_detected = {event: 0 for event in DetectionCategories.DEVICES}
+    visibility_issues = {event: 0 for event in DetectionCategories.VISIBILITY}
+    suspicious_activities = {event: 0 for event in DetectionCategories.SUSPICIOUS}
+
+    # Count face detection issues
+    face_visible_count = 0
+    total_checks = 0
+
     for log in logs:
-        if log.event_type == "face_detected":
-            face_detections += 1
-        elif log.event_type not in non_suspicious_events:  # Only count suspicious events
-            suspicious_activities[log.event_type] = suspicious_activities.get(log.event_type, 0) + 1
+        event = log.log
+        if event in DetectionCategories.DEVICES:
+            devices_detected[event] += 1
+        elif event in DetectionCategories.VISIBILITY:
+            visibility_issues[event] += 1
+        elif event in DetectionCategories.SUSPICIOUS:
+            suspicious_activities[event] += 1
+
+        # Track face visibility
+        if "Face" in event:
+            total_checks += 1
+            if "not" not in event and "too" not in event and "partially" not in event:
+                face_visible_count += 1
+
+    face_detection_rate = (face_visible_count / total_checks * 100) if total_checks > 0 else 0
     
-    # Calculate compliance
-    face_detection_rate = (face_detections / total_checks) * 100 if total_checks > 0 else 0
-    
-    # Calculate overall compliance
-    suspicious_weight = sum(suspicious_activities.values())
-    overall_compliance = max(0, face_detection_rate - (suspicious_weight / total_checks * 20))
-    
+    # Calculate compliance score based on all categories
+    total_violations = (
+        sum(devices_detected.values()) + 
+        sum(visibility_issues.values()) + 
+        sum(suspicious_activities.values())  # Add missing closing parenthesis
+    )
+    overall_compliance = max(0, 100 - (total_violations * 5))  # Deduct 5 points per violation
+
     return ExamSummary(
-        total_duration=round(duration, 2),
+        total_duration=round(total_duration, 2),
         face_detection_rate=round(face_detection_rate, 2),
         suspicious_activities=suspicious_activities,
+        devices_detected=devices_detected,
+        visibility_issues=visibility_issues,
         overall_compliance=round(overall_compliance, 2)
     )
 

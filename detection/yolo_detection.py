@@ -17,6 +17,15 @@ model = None
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "yolov8n.pt")
 
+SUSPICIOUS_OBJECTS = {
+    "cell phone": "Phone detected",
+    "book": "Book detected",
+    "tablet": "Tablet detected",
+    "laptop": "Laptop detected",
+    "tvmonitor": "Secondary screen detected",
+    "remote": "Remote control detected"
+}
+
 def load_model():
     global model
     try:
@@ -63,10 +72,13 @@ def detect_yolo(frame):
                 logger.info(f"Detection: {name} ({conf:.2f})")
                 
                 if conf > 0.4:
-                    if name == "cell phone":
-                        logs.append({"time": timestamp, "event": "Phone detected"})
-                    elif name == "person" and len(results.boxes) > 1:
-                        logs.append({"time": timestamp, "event": "Background person detected"})
+                    # Check for suspicious objects
+                    if name in SUSPICIOUS_OBJECTS:
+                        logs.append({"time": timestamp, "event": SUSPICIOUS_OBJECTS[name]})
+                    # Check for multiple people
+                    elif name == "person":
+                        if len(results.boxes) > 1:
+                            logs.append({"time": timestamp, "event": "Multiple people detected"})
                     
     except Exception as e:
         logger.error(f"YOLO detection error: {str(e)}")

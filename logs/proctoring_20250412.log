@@ -1,0 +1,1764 @@
+2025-04-12 01:51:14,012 - proctoring - INFO - [database.py:23] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 01:52:47,852 - proctoring - INFO - [database.py:23] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 01:53:05,556 - proctoring - INFO - [mediapipe_config.py:14] - MediaPipe configured for CPU-only mode
+2025-04-12 01:53:05,556 - proctoring - INFO - [main.py:67] - MediaPipe configured successfully
+2025-04-12 01:53:05,557 - proctoring - ERROR - [main.py:75] - Database connection failed: Unsupported argument 'ssl'
+2025-04-12 01:53:05,557 - proctoring - ERROR - [main.py:90] - Startup failed: Unsupported argument 'ssl'
+Traceback (most recent call last):
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/main.py", line 71, in startup_event
+    with engine.connect() as conn:
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3274, in connect
+    return self._connection_cls(self)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 146, in __init__
+    self._dbapi_connection = engine.raw_connection()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3298, in raw_connection
+    return self.pool.connect()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 713, in checkout
+    rec = pool._do_get()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 180, in _do_get
+    self._dec_overflow()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+    return self._create_connection()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 675, in __init__
+    self.__connect()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 902, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 897, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py", line 646, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 625, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 153, in __init__
+    self.connect(**kwargs)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/mysql/connector/abstracts.py", line 1526, in connect
+    self.config(**kwargs)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/mysql/connector/abstracts.py", line 718, in config
+    raise AttributeError(f"Unsupported argument '{key}'") from None
+AttributeError: Unsupported argument 'ssl'
+2025-04-12 01:54:09,484 - proctoring - INFO - [database.py:23] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 01:54:14,935 - proctoring - INFO - [mediapipe_config.py:14] - MediaPipe configured for CPU-only mode
+2025-04-12 01:54:14,935 - proctoring - INFO - [main.py:67] - MediaPipe configured successfully
+2025-04-12 01:54:14,935 - proctoring - ERROR - [main.py:75] - Database connection failed: Unsupported argument 'ssl'
+2025-04-12 01:54:14,935 - proctoring - ERROR - [main.py:90] - Startup failed: Unsupported argument 'ssl'
+Traceback (most recent call last):
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/main.py", line 71, in startup_event
+    with engine.connect() as conn:
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3274, in connect
+    return self._connection_cls(self)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 146, in __init__
+    self._dbapi_connection = engine.raw_connection()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3298, in raw_connection
+    return self.pool.connect()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 713, in checkout
+    rec = pool._do_get()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 180, in _do_get
+    self._dec_overflow()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+    return self._create_connection()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 675, in __init__
+    self.__connect()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 902, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 897, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py", line 646, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 625, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 153, in __init__
+    self.connect(**kwargs)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/mysql/connector/abstracts.py", line 1526, in connect
+    self.config(**kwargs)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/mysql/connector/abstracts.py", line 718, in config
+    raise AttributeError(f"Unsupported argument '{key}'") from None
+AttributeError: Unsupported argument 'ssl'
+2025-04-12 01:54:28,779 - proctoring - INFO - [database.py:23] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 01:54:33,956 - proctoring - INFO - [mediapipe_config.py:14] - MediaPipe configured for CPU-only mode
+2025-04-12 01:54:33,956 - proctoring - INFO - [main.py:67] - MediaPipe configured successfully
+2025-04-12 01:54:33,956 - proctoring - ERROR - [main.py:75] - Database connection failed: Unsupported argument 'ssl'
+2025-04-12 01:54:33,956 - proctoring - ERROR - [main.py:90] - Startup failed: Unsupported argument 'ssl'
+Traceback (most recent call last):
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/main.py", line 71, in startup_event
+    with engine.connect() as conn:
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3274, in connect
+    return self._connection_cls(self)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 146, in __init__
+    self._dbapi_connection = engine.raw_connection()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3298, in raw_connection
+    return self.pool.connect()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 713, in checkout
+    rec = pool._do_get()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 180, in _do_get
+    self._dec_overflow()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+    return self._create_connection()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 675, in __init__
+    self.__connect()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 902, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 897, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py", line 646, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 625, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 153, in __init__
+    self.connect(**kwargs)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/mysql/connector/abstracts.py", line 1526, in connect
+    self.config(**kwargs)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/mysql/connector/abstracts.py", line 718, in config
+    raise AttributeError(f"Unsupported argument '{key}'") from None
+AttributeError: Unsupported argument 'ssl'
+2025-04-12 01:54:37,614 - proctoring - INFO - [database.py:23] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 01:54:41,680 - proctoring - INFO - [mediapipe_config.py:14] - MediaPipe configured for CPU-only mode
+2025-04-12 01:54:41,680 - proctoring - INFO - [main.py:67] - MediaPipe configured successfully
+2025-04-12 01:54:41,681 - proctoring - ERROR - [main.py:75] - Database connection failed: Unsupported argument 'ssl'
+2025-04-12 01:54:41,681 - proctoring - ERROR - [main.py:90] - Startup failed: Unsupported argument 'ssl'
+Traceback (most recent call last):
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/main.py", line 71, in startup_event
+    with engine.connect() as conn:
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3274, in connect
+    return self._connection_cls(self)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 146, in __init__
+    self._dbapi_connection = engine.raw_connection()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3298, in raw_connection
+    return self.pool.connect()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 713, in checkout
+    rec = pool._do_get()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 180, in _do_get
+    self._dec_overflow()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+    return self._create_connection()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 675, in __init__
+    self.__connect()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 902, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 897, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py", line 646, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 625, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 153, in __init__
+    self.connect(**kwargs)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/mysql/connector/abstracts.py", line 1526, in connect
+    self.config(**kwargs)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/mysql/connector/abstracts.py", line 718, in config
+    raise AttributeError(f"Unsupported argument '{key}'") from None
+AttributeError: Unsupported argument 'ssl'
+2025-04-12 01:55:09,188 - proctoring - INFO - [database.py:23] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 01:55:13,186 - proctoring - INFO - [mediapipe_config.py:14] - MediaPipe configured for CPU-only mode
+2025-04-12 01:55:13,186 - proctoring - INFO - [main.py:67] - MediaPipe configured successfully
+2025-04-12 01:55:13,187 - proctoring - ERROR - [main.py:75] - Database connection failed: Unsupported argument 'ssl'
+2025-04-12 01:55:13,187 - proctoring - ERROR - [main.py:90] - Startup failed: Unsupported argument 'ssl'
+Traceback (most recent call last):
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/main.py", line 71, in startup_event
+    with engine.connect() as conn:
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3274, in connect
+    return self._connection_cls(self)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 146, in __init__
+    self._dbapi_connection = engine.raw_connection()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 3298, in raw_connection
+    return self.pool.connect()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 449, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 713, in checkout
+    rec = pool._do_get()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 180, in _do_get
+    self._dec_overflow()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+    return self._create_connection()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 390, in _create_connection
+    return _ConnectionRecord(self)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 675, in __init__
+    self.__connect()
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 902, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/pool/base.py", line 897, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/create.py", line 646, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 625, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 153, in __init__
+    self.connect(**kwargs)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/mysql/connector/abstracts.py", line 1526, in connect
+    self.config(**kwargs)
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/.venv/lib/python3.9/site-packages/mysql/connector/abstracts.py", line 718, in config
+    raise AttributeError(f"Unsupported argument '{key}'") from None
+AttributeError: Unsupported argument 'ssl'
+2025-04-12 01:57:10,566 - proctoring - INFO - [database.py:23] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 01:57:55,450 - proctoring - INFO - [database.py:23] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 01:57:59,919 - proctoring - INFO - [mediapipe_config.py:14] - MediaPipe configured for CPU-only mode
+2025-04-12 01:57:59,919 - proctoring - INFO - [main.py:67] - MediaPipe configured successfully
+2025-04-12 01:58:00,004 - proctoring - ERROR - [main.py:75] - Database connection failed: name 'text' is not defined
+2025-04-12 01:58:00,004 - proctoring - ERROR - [main.py:90] - Startup failed: name 'text' is not defined
+Traceback (most recent call last):
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/main.py", line 72, in startup_event
+    result = conn.execute(text("SELECT 1"))
+NameError: name 'text' is not defined
+2025-04-12 01:58:11,492 - proctoring - INFO - [database.py:23] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 01:58:16,037 - proctoring - INFO - [mediapipe_config.py:14] - MediaPipe configured for CPU-only mode
+2025-04-12 01:58:16,037 - proctoring - INFO - [main.py:67] - MediaPipe configured successfully
+2025-04-12 01:58:16,058 - proctoring - ERROR - [main.py:75] - Database connection failed: name 'text' is not defined
+2025-04-12 01:58:16,058 - proctoring - ERROR - [main.py:90] - Startup failed: name 'text' is not defined
+Traceback (most recent call last):
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/main.py", line 72, in startup_event
+    result = conn.execute(text("SELECT 1"))
+NameError: name 'text' is not defined
+2025-04-12 01:58:53,261 - proctoring - INFO - [database.py:24] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 01:58:58,969 - proctoring - INFO - [mediapipe_config.py:14] - MediaPipe configured for CPU-only mode
+2025-04-12 01:58:58,969 - proctoring - INFO - [main.py:67] - MediaPipe configured successfully
+2025-04-12 01:58:58,993 - proctoring - ERROR - [main.py:75] - Database connection failed: name 'text' is not defined
+2025-04-12 01:58:58,993 - proctoring - ERROR - [main.py:90] - Startup failed: name 'text' is not defined
+Traceback (most recent call last):
+  File "/Users/joshua/Desktop/Proctoring_AI/Proctoring-AI-BE/main.py", line 72, in startup_event
+    with engine.connect() as conn:
+NameError: name 'text' is not defined
+2025-04-12 01:58:59,975 - proctoring - INFO - [database.py:24] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 01:59:04,141 - proctoring - INFO - [mediapipe_config.py:14] - MediaPipe configured for CPU-only mode
+2025-04-12 01:59:04,141 - proctoring - INFO - [main.py:68] - MediaPipe configured successfully
+2025-04-12 01:59:04,165 - proctoring - INFO - [main.py:74] - Database connection test successful
+2025-04-12 01:59:04,173 - proctoring - INFO - [database.py:61] - Database tables verified/created successfully
+2025-04-12 01:59:04,175 - proctoring - INFO - [main.py:81] - Database initialized successfully
+2025-04-12 01:59:04,256 - proctoring - INFO - [main.py:86] - YOLO model loaded successfully
+2025-04-12 02:00:33,316 - proctoring - INFO - [database.py:24] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 02:00:37,870 - proctoring - INFO - [mediapipe_config.py:14] - MediaPipe configured for CPU-only mode
+2025-04-12 02:00:37,870 - proctoring - INFO - [main.py:68] - MediaPipe configured successfully
+2025-04-12 02:00:37,893 - proctoring - INFO - [main.py:74] - Database connection test successful
+2025-04-12 02:00:37,896 - proctoring - INFO - [database.py:61] - Database tables verified/created successfully
+2025-04-12 02:00:37,897 - proctoring - INFO - [main.py:81] - Database initialized successfully
+2025-04-12 02:00:37,950 - proctoring - INFO - [main.py:86] - YOLO model loaded successfully
+2025-04-12 02:00:42,505 - proctoring - INFO - [database.py:24] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 02:00:47,963 - proctoring - INFO - [mediapipe_config.py:14] - MediaPipe configured for CPU-only mode
+2025-04-12 02:00:47,963 - proctoring - INFO - [main.py:68] - MediaPipe configured successfully
+2025-04-12 02:00:47,985 - proctoring - INFO - [main.py:74] - Database connection test successful
+2025-04-12 02:00:47,989 - proctoring - INFO - [database.py:61] - Database tables verified/created successfully
+2025-04-12 02:00:47,990 - proctoring - INFO - [main.py:81] - Database initialized successfully
+2025-04-12 02:00:48,049 - proctoring - INFO - [main.py:86] - YOLO model loaded successfully
+2025-04-12 02:02:41,836 - proctoring - INFO - [database.py:24] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 02:02:46,420 - proctoring - INFO - [mediapipe_config.py:14] - MediaPipe configured for CPU-only mode
+2025-04-12 02:02:46,421 - proctoring - INFO - [main.py:68] - MediaPipe configured successfully
+2025-04-12 02:02:46,446 - proctoring - INFO - [main.py:74] - Database connection test successful
+2025-04-12 02:02:46,517 - proctoring - INFO - [database.py:61] - Database tables verified/created successfully
+2025-04-12 02:02:46,519 - proctoring - INFO - [main.py:81] - Database initialized successfully
+2025-04-12 02:02:46,579 - proctoring - INFO - [main.py:86] - YOLO model loaded successfully
+2025-04-12 02:04:19,219 - proctoring - INFO - [main.py:133] - WebSocket connection attempt for user 1
+2025-04-12 02:04:19,223 - proctoring - INFO - [connection.py:19] - WebSocket connection accepted for user 1
+2025-04-12 02:04:19,224 - proctoring - INFO - [main.py:162] - WebSocket connection established for user 1
+2025-04-12 02:04:19,241 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 2696
+2025-04-12 02:04:19,258 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:19,259 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:22,318 - proctoring - INFO - [face_detection.py:26] - Face not detected
+2025-04-12 02:04:26,079 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:26,092 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:26,092 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:26,092 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:26,092 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:26,092 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:26,092 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:19.259416', 'event': 'Face not detected'}
+2025-04-12 02:04:26,097 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:26,102 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 7754
+2025-04-12 02:04:26,103 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:26,103 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:26,113 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.95
+2025-04-12 02:04:26,281 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:26,282 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:26,282 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:04:26,282 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:26,282 - proctoring - INFO - [detection_service.py:34] - Total events detected: 2
+2025-04-12 02:04:26,282 - proctoring - INFO - [log_service.py:12] - Attempting to store 2 logs for user 1
+2025-04-12 02:04:26,282 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:26.103884', 'event': 'Face detected'}
+2025-04-12 02:04:26,282 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:26.171920', 'event': 'Mouth movement detected'}
+2025-04-12 02:04:26,285 - proctoring - INFO - [log_service.py:40] - Successfully stored 2 logs
+2025-04-12 02:04:26,289 - proctoring - INFO - [main.py:217] - Cleaning up connection for user 1
+2025-04-12 02:04:28,516 - proctoring - INFO - [main.py:133] - WebSocket connection attempt for user 1
+2025-04-12 02:04:28,520 - proctoring - INFO - [connection.py:19] - WebSocket connection accepted for user 1
+2025-04-12 02:04:28,520 - proctoring - INFO - [main.py:162] - WebSocket connection established for user 1
+2025-04-12 02:04:28,533 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20053
+2025-04-12 02:04:28,534 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:28,534 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:28,549 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:28,802 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:28,802 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:28,802 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:28,802 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:28,802 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:28,802 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:28,803 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:28.534954', 'event': 'Face detected'}
+2025-04-12 02:04:28,805 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:28,808 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21066
+2025-04-12 02:04:28,809 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:28,809 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:28,819 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:29,018 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:29,018 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:29,018 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:29,018 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:29,018 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:29,018 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:29,018 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:28.809797', 'event': 'Face detected'}
+2025-04-12 02:04:29,021 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:29,023 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21428
+2025-04-12 02:04:29,024 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:29,024 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:29,033 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:29,220 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:29,220 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:29,220 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:29,220 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:29,220 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:29,221 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:29,221 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:29.024680', 'event': 'Face detected'}
+2025-04-12 02:04:29,223 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:29,226 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21406
+2025-04-12 02:04:29,231 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:29,231 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:29,247 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:29,438 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:29,439 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:29,439 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:29,439 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:29,439 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:29,440 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:29,440 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:29.232890', 'event': 'Face detected'}
+2025-04-12 02:04:29,443 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:29,446 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21284
+2025-04-12 02:04:29,448 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:29,448 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:29,469 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:29,691 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:29,691 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:29,691 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:29,691 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:29,691 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:29,691 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:29,691 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:29.448594', 'event': 'Face detected'}
+2025-04-12 02:04:29,694 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:29,696 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21290
+2025-04-12 02:04:29,697 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:29,697 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:29,708 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:29,921 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:29,921 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:29,922 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:29,922 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:29,922 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:29,922 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:29,922 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:29.698106', 'event': 'Face detected'}
+2025-04-12 02:04:29,925 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:29,928 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21326
+2025-04-12 02:04:29,929 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:29,929 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:29,942 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:30,173 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:30,173 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:30,174 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:30,174 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:30,174 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:30,174 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:30,175 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:29.929756', 'event': 'Face detected'}
+2025-04-12 02:04:30,178 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:30,182 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21446
+2025-04-12 02:04:30,184 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:30,184 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:30,202 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:30,399 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:30,399 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:30,399 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:30,399 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:30,399 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:30,399 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:30,400 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:30.184618', 'event': 'Face detected'}
+2025-04-12 02:04:30,402 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:30,404 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20950
+2025-04-12 02:04:30,406 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:30,406 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:30,416 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:30,616 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:30,616 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:30,616 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:30,616 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:30,616 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:30,616 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:30,616 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:30.406352', 'event': 'Face detected'}
+2025-04-12 02:04:30,619 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:30,622 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20194
+2025-04-12 02:04:30,623 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:30,623 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:30,632 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:30,833 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:30,834 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:30,834 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:30,834 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:30,834 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:30,834 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:30,834 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:30.623687', 'event': 'Face detected'}
+2025-04-12 02:04:30,838 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:30,841 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20040
+2025-04-12 02:04:30,842 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:30,843 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:30,861 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:31,108 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:31,109 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:31,109 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:31,109 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:31,109 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:31,109 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:31,110 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:30.843631', 'event': 'Face detected'}
+2025-04-12 02:04:31,113 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:31,116 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21351
+2025-04-12 02:04:31,117 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:31,117 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:31,130 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:31,342 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:31,342 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:31,343 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:31,343 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:31,343 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:31,343 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:31,343 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:31.117801', 'event': 'Face detected'}
+2025-04-12 02:04:31,345 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:31,348 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21571
+2025-04-12 02:04:31,349 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:31,349 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:31,360 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.98
+2025-04-12 02:04:31,568 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:31,568 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:31,568 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:31,568 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:31,569 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:31,569 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:31,569 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:31.349449', 'event': 'Face detected'}
+2025-04-12 02:04:31,571 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:31,574 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21366
+2025-04-12 02:04:31,575 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:31,575 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:31,587 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:31,789 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:31,789 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:31,789 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:31,789 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:31,789 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:31,790 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:31,790 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:31.575852', 'event': 'Face detected'}
+2025-04-12 02:04:31,792 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:31,794 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21488
+2025-04-12 02:04:31,795 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:31,795 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:31,805 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.98
+2025-04-12 02:04:32,075 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:32,075 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:32,075 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:32,075 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:32,075 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:32,076 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:32,076 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:31.795507', 'event': 'Face detected'}
+2025-04-12 02:04:32,079 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:32,081 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21388
+2025-04-12 02:04:32,082 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:32,082 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:32,096 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:32,316 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:32,316 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:32,316 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:32,316 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:32,316 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:32,316 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:32,316 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:32.082934', 'event': 'Face detected'}
+2025-04-12 02:04:32,319 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:32,324 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21050
+2025-04-12 02:04:32,326 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:32,326 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:32,337 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:32,526 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:32,526 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:32,527 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:32,527 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:32,527 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:32,527 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:32,527 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:32.326548', 'event': 'Face detected'}
+2025-04-12 02:04:32,529 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:32,531 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20266
+2025-04-12 02:04:32,532 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:32,532 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:32,544 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:32,734 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:32,734 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:32,734 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:32,734 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:32,734 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:32,735 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:32,735 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:32.533103', 'event': 'Face detected'}
+2025-04-12 02:04:32,737 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:32,740 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21003
+2025-04-12 02:04:32,741 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:32,741 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:32,751 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:32,958 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:32,959 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:32,959 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:32,959 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:32,959 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:32,959 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:32,959 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:32.741965', 'event': 'Face detected'}
+2025-04-12 02:04:32,963 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:32,966 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20404
+2025-04-12 02:04:32,967 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:32,968 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:32,985 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:33,238 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:33,239 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:33,239 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:33,239 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:33,239 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:33,239 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:33,239 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:32.968178', 'event': 'Face detected'}
+2025-04-12 02:04:33,245 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:33,247 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21435
+2025-04-12 02:04:33,248 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:33,248 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:33,261 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:33,447 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:33,447 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:33,447 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:33,447 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:33,447 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:33,448 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:33,448 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:33.248691', 'event': 'Face detected'}
+2025-04-12 02:04:33,449 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:33,451 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21364
+2025-04-12 02:04:33,453 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:33,453 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:33,461 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:33,647 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:33,647 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:33,647 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:33,647 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:33,647 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:33,648 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:33,648 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:33.453265', 'event': 'Face detected'}
+2025-04-12 02:04:33,650 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:33,653 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21352
+2025-04-12 02:04:33,655 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:33,655 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:33,664 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:33,848 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:33,848 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:33,848 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:33,848 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:33,848 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:33,848 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:33,849 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:33.655371', 'event': 'Face detected'}
+2025-04-12 02:04:33,851 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:33,853 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21445
+2025-04-12 02:04:33,855 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:33,855 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:33,864 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:34,049 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:34,049 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:34,049 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:34,049 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:34,049 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:34,049 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:34,049 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:33.855276', 'event': 'Face detected'}
+2025-04-12 02:04:34,052 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:34,054 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21025
+2025-04-12 02:04:34,055 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:34,055 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:34,065 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:34,247 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:34,247 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:34,247 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:34,247 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:34,247 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:34,247 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:34,247 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:34.055737', 'event': 'Face detected'}
+2025-04-12 02:04:34,249 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:34,251 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19825
+2025-04-12 02:04:34,253 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:34,253 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:34,264 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:34,465 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:34,465 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:34,466 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:34,466 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:34,466 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:34,466 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:34,466 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:34.253667', 'event': 'Face detected'}
+2025-04-12 02:04:34,468 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:34,471 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20681
+2025-04-12 02:04:34,472 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:34,472 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:34,482 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:34,675 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:34,675 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:34,676 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:34,676 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:34,676 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:34,676 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:34,676 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:34.472655', 'event': 'Face detected'}
+2025-04-12 02:04:34,679 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:34,681 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19798
+2025-04-12 02:04:34,682 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:34,683 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:34,696 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:34,904 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:34,904 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:34,904 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:34,904 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:34,904 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:34,904 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:34,904 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:34.683252', 'event': 'Face detected'}
+2025-04-12 02:04:34,907 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:34,909 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20514
+2025-04-12 02:04:34,910 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:34,910 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:34,920 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:35,110 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:35,110 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:35,110 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:35,110 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:35,110 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:35,110 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:35,110 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:34.910730', 'event': 'Face detected'}
+2025-04-12 02:04:35,112 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:35,126 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21150
+2025-04-12 02:04:35,127 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:04:35,128 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:04:35,137 - proctoring - INFO - [face_detection.py:32] - Face detected with confidence 0.99
+2025-04-12 02:04:35,295 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:04:35,295 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:04:35,295 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:04:35,296 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:04:35,296 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:04:35,296 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:04:35,296 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:04:35.128126', 'event': 'Face detected'}
+2025-04-12 02:04:35,298 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:04:35,299 - proctoring - INFO - [main.py:170] - WebSocket disconnected for user 1
+2025-04-12 02:04:35,300 - proctoring - INFO - [main.py:217] - Cleaning up connection for user 1
+2025-04-12 02:08:37,186 - proctoring - INFO - [database.py:24] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 02:08:43,019 - proctoring - INFO - [mediapipe_config.py:14] - MediaPipe configured for CPU-only mode
+2025-04-12 02:08:43,019 - proctoring - INFO - [main.py:68] - MediaPipe configured successfully
+2025-04-12 02:08:43,043 - proctoring - INFO - [main.py:74] - Database connection test successful
+2025-04-12 02:08:43,047 - proctoring - INFO - [database.py:61] - Database tables verified/created successfully
+2025-04-12 02:08:43,049 - proctoring - INFO - [main.py:81] - Database initialized successfully
+2025-04-12 02:08:43,113 - proctoring - INFO - [main.py:86] - YOLO model loaded successfully
+2025-04-12 02:08:44,296 - proctoring - INFO - [database.py:24] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 02:08:49,071 - proctoring - INFO - [mediapipe_config.py:14] - MediaPipe configured for CPU-only mode
+2025-04-12 02:08:49,071 - proctoring - INFO - [main.py:68] - MediaPipe configured successfully
+2025-04-12 02:08:49,093 - proctoring - INFO - [main.py:74] - Database connection test successful
+2025-04-12 02:08:49,097 - proctoring - INFO - [database.py:61] - Database tables verified/created successfully
+2025-04-12 02:08:49,099 - proctoring - INFO - [main.py:81] - Database initialized successfully
+2025-04-12 02:08:49,152 - proctoring - INFO - [main.py:86] - YOLO model loaded successfully
+2025-04-12 02:08:50,747 - proctoring - INFO - [database.py:24] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 02:08:55,112 - proctoring - INFO - [mediapipe_config.py:14] - MediaPipe configured for CPU-only mode
+2025-04-12 02:08:55,113 - proctoring - INFO - [main.py:68] - MediaPipe configured successfully
+2025-04-12 02:08:55,135 - proctoring - INFO - [main.py:74] - Database connection test successful
+2025-04-12 02:08:55,138 - proctoring - INFO - [database.py:61] - Database tables verified/created successfully
+2025-04-12 02:08:55,140 - proctoring - INFO - [main.py:81] - Database initialized successfully
+2025-04-12 02:08:55,187 - proctoring - INFO - [main.py:86] - YOLO model loaded successfully
+2025-04-12 02:09:58,244 - proctoring - INFO - [database.py:24] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 02:10:04,704 - proctoring - INFO - [mediapipe_config.py:14] - MediaPipe configured for CPU-only mode
+2025-04-12 02:10:04,711 - proctoring - INFO - [main.py:68] - MediaPipe configured successfully
+2025-04-12 02:10:04,736 - proctoring - INFO - [main.py:74] - Database connection test successful
+2025-04-12 02:10:04,741 - proctoring - INFO - [database.py:61] - Database tables verified/created successfully
+2025-04-12 02:10:04,743 - proctoring - INFO - [main.py:81] - Database initialized successfully
+2025-04-12 02:10:04,807 - proctoring - INFO - [main.py:86] - YOLO model loaded successfully
+2025-04-12 02:10:06,479 - proctoring - INFO - [database.py:24] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 02:10:10,851 - proctoring - INFO - [mediapipe_config.py:14] - MediaPipe configured for CPU-only mode
+2025-04-12 02:10:10,851 - proctoring - INFO - [main.py:68] - MediaPipe configured successfully
+2025-04-12 02:10:10,874 - proctoring - INFO - [main.py:74] - Database connection test successful
+2025-04-12 02:10:10,878 - proctoring - INFO - [database.py:61] - Database tables verified/created successfully
+2025-04-12 02:10:10,880 - proctoring - INFO - [main.py:81] - Database initialized successfully
+2025-04-12 02:10:10,928 - proctoring - INFO - [main.py:86] - YOLO model loaded successfully
+2025-04-12 02:10:13,279 - proctoring - INFO - [database.py:24] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 02:10:17,753 - proctoring - INFO - [mediapipe_config.py:14] - MediaPipe configured for CPU-only mode
+2025-04-12 02:10:17,753 - proctoring - INFO - [main.py:68] - MediaPipe configured successfully
+2025-04-12 02:10:17,775 - proctoring - INFO - [main.py:74] - Database connection test successful
+2025-04-12 02:10:17,778 - proctoring - INFO - [database.py:61] - Database tables verified/created successfully
+2025-04-12 02:10:17,780 - proctoring - INFO - [main.py:81] - Database initialized successfully
+2025-04-12 02:10:17,828 - proctoring - INFO - [main.py:86] - YOLO model loaded successfully
+2025-04-12 02:10:18,681 - proctoring - INFO - [database.py:24] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 02:10:23,693 - proctoring - INFO - [mediapipe_config.py:14] - MediaPipe configured for CPU-only mode
+2025-04-12 02:10:23,693 - proctoring - INFO - [main.py:68] - MediaPipe configured successfully
+2025-04-12 02:10:23,715 - proctoring - INFO - [main.py:74] - Database connection test successful
+2025-04-12 02:10:23,719 - proctoring - INFO - [database.py:61] - Database tables verified/created successfully
+2025-04-12 02:10:23,720 - proctoring - INFO - [main.py:81] - Database initialized successfully
+2025-04-12 02:10:23,771 - proctoring - INFO - [main.py:86] - YOLO model loaded successfully
+2025-04-12 02:10:29,767 - proctoring - INFO - [database.py:24] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 02:12:01,717 - proctoring - INFO - [database.py:24] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 02:12:05,685 - proctoring - INFO - [database.py:24] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 02:12:14,451 - proctoring - INFO - [database.py:24] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 02:12:53,296 - proctoring - INFO - [database.py:24] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 02:12:59,237 - proctoring - INFO - [mediapipe_config.py:14] - MediaPipe configured for CPU-only mode
+2025-04-12 02:12:59,237 - proctoring - INFO - [main.py:68] - MediaPipe configured successfully
+2025-04-12 02:12:59,301 - proctoring - INFO - [main.py:74] - Database connection test successful
+2025-04-12 02:12:59,306 - proctoring - INFO - [database.py:61] - Database tables verified/created successfully
+2025-04-12 02:12:59,308 - proctoring - INFO - [main.py:81] - Database initialized successfully
+2025-04-12 02:12:59,388 - proctoring - INFO - [main.py:86] - YOLO model loaded successfully
+2025-04-12 02:13:00,221 - proctoring - INFO - [database.py:24] - Using database: localhost:3306/Proctoring_AI
+2025-04-12 02:13:04,979 - proctoring - INFO - [mediapipe_config.py:14] - MediaPipe configured for CPU-only mode
+2025-04-12 02:13:04,979 - proctoring - INFO - [main.py:68] - MediaPipe configured successfully
+2025-04-12 02:13:05,002 - proctoring - INFO - [main.py:74] - Database connection test successful
+2025-04-12 02:13:05,006 - proctoring - INFO - [database.py:61] - Database tables verified/created successfully
+2025-04-12 02:13:05,010 - proctoring - INFO - [main.py:81] - Database initialized successfully
+2025-04-12 02:13:05,069 - proctoring - INFO - [main.py:86] - YOLO model loaded successfully
+2025-04-12 02:13:19,596 - proctoring - INFO - [main.py:133] - WebSocket connection attempt for user 1
+2025-04-12 02:13:19,600 - proctoring - INFO - [connection.py:19] - WebSocket connection accepted for user 1
+2025-04-12 02:13:19,600 - proctoring - INFO - [main.py:162] - WebSocket connection established for user 1
+2025-04-12 02:13:19,612 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 2670
+2025-04-12 02:13:19,627 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:19,627 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:21,868 - proctoring - INFO - [face_detection.py:26] - Face not visible in frame
+2025-04-12 02:13:23,533 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:13:23,534 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:23,534 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:13:23,534 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:23,534 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:23,534 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:23,534 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:19.627398', 'event': 'Face not visible in frame'}
+2025-04-12 02:13:23,539 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:23,545 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 7210
+2025-04-12 02:13:23,546 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:23,546 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:23,794 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:23,794 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:23,795 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:23,795 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:23,795 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:23,795 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:23,795 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:23.633719', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:23,798 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:23,800 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 6830
+2025-04-12 02:13:23,801 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:23,801 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:24,033 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:24,033 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:24,033 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:24,034 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:24,034 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:24,034 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:24,034 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:23.886595', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:24,037 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:24,040 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 13013
+2025-04-12 02:13:24,041 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:24,041 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:24,229 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:24,230 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:24,230 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:24,230 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:24,230 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:24,230 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:24,230 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:24.113739', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:24,233 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:24,235 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 18767
+2025-04-12 02:13:24,236 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:24,236 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:24,454 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:24,454 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:24,454 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:24,454 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:24,454 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:24,454 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:24,455 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:24.311072', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:24,457 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:24,460 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21592
+2025-04-12 02:13:24,462 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:24,462 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:24,715 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:24,715 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:24,715 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:24,715 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:24,715 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:24,715 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:24,716 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:24.541951', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:24,720 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:24,722 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21596
+2025-04-12 02:13:24,724 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:24,724 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:24,920 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:24,920 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:24,920 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:24,920 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:24,920 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:24,920 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:24,921 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:24.800409', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:24,924 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:24,926 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20069
+2025-04-12 02:13:24,927 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:24,927 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:25,176 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:25,177 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:25,177 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:25,177 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:25,177 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:25,177 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:25,178 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:25.001043', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:25,181 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:25,184 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 18500
+2025-04-12 02:13:25,185 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:25,185 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:25,430 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:25,431 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:25,431 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:25,431 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:25,431 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:25,431 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:25,431 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:25.281784', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:25,434 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:25,436 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 17066
+2025-04-12 02:13:25,437 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:25,437 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:25,656 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:25,656 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:25,656 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:25,656 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:25,656 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:25,656 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:25,656 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:25.537161', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:25,658 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:25,660 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19066
+2025-04-12 02:13:25,662 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:25,662 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:25,866 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:25,866 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:25,866 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:25,866 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:25,866 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:25,867 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:25,867 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:25.732412', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:25,869 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:25,872 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 18479
+2025-04-12 02:13:25,873 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:25,873 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:26,114 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:26,114 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:26,114 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:26,114 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:26,114 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:26,114 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:26,115 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:25.959101', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:26,118 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:26,120 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 18479
+2025-04-12 02:13:26,122 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:26,122 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:26,315 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:26,315 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:26,315 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:26,315 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:26,315 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:26,315 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:26,316 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:26.191017', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:26,319 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:26,320 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20096
+2025-04-12 02:13:26,322 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:26,322 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:26,573 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:26,573 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:26,573 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:26,574 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:26,574 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:26,574 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:26,574 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:26.408881', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:26,578 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:26,580 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20188
+2025-04-12 02:13:26,582 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:26,582 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:26,794 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:26,794 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:26,794 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:26,794 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:26,794 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:26,795 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:26,795 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:26.680409', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:26,797 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:26,799 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20120
+2025-04-12 02:13:26,800 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:26,800 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:27,015 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:27,015 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:27,015 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:27,016 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:27,016 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:27,016 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:27,016 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:26.874531', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:27,018 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:27,021 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20275
+2025-04-12 02:13:27,022 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:27,022 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:27,305 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:27,306 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:27,306 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:27,306 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:27,306 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:27,307 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:27,307 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:27.143542', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:27,309 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:27,313 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20442
+2025-04-12 02:13:27,314 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:27,314 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:27,528 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:27,528 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:27,528 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:27,528 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:27,528 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:27,529 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:27,529 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:27.411380', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:27,532 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:27,533 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20109
+2025-04-12 02:13:27,534 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:27,535 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:27,765 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:27,766 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:27,766 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:27,766 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:27,766 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:27,766 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:27,767 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:27.628379', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:27,770 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:27,772 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20011
+2025-04-12 02:13:27,774 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:27,774 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:28,007 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:28,007 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:28,008 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:28,008 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:28,008 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:28,008 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:28,008 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:27.884589', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:28,010 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:28,013 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19417
+2025-04-12 02:13:28,014 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:28,014 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:28,196 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:28,196 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:28,196 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:28,196 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:28,196 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:28,196 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:28,196 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:28.084709', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:28,199 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:28,201 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19820
+2025-04-12 02:13:28,202 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:28,202 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:28,418 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:28,418 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:28,418 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:28,418 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:28,418 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:28,418 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:28,419 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:28.295402', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:28,421 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:28,423 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19252
+2025-04-12 02:13:28,424 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:28,424 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:28,660 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:28,660 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:28,660 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:28,660 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:28,660 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:28,660 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:28,661 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:28.499273', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:28,663 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:28,665 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20205
+2025-04-12 02:13:28,666 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:28,667 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:28,869 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:28,869 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:28,870 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:28,870 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:28,870 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:28,870 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:28,870 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:28.740652', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:28,874 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:28,877 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20321
+2025-04-12 02:13:28,879 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:28,879 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:29,212 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:29,212 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:29,212 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:29,212 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:29,212 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:29,212 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:29,213 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:29.060585', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:29,216 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:29,219 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20427
+2025-04-12 02:13:29,221 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:29,221 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:29,481 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:29,481 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:29,481 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:29,482 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:29,482 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:29,482 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:29,482 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:29.334524', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:29,485 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:29,487 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19922
+2025-04-12 02:13:29,488 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:29,488 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:29,696 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:29,696 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:29,696 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:29,696 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:29,696 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:29,696 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:29,696 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:29.566206', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:29,699 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:29,701 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20027
+2025-04-12 02:13:29,703 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:29,703 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:29,911 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:29,911 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:29,911 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:29,911 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:29,911 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:29,911 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:29,912 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:29.779415', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:29,914 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:29,916 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19076
+2025-04-12 02:13:29,917 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:29,917 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:30,122 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:30,122 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:30,122 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:30,123 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:30,123 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:30,123 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:30,123 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:30.000676', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:30,126 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:30,132 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19051
+2025-04-12 02:13:30,133 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:30,134 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:30,323 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:30,327 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:30,327 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:30,327 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:30,327 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:30,327 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:30,327 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:30.207094', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:30,364 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:30,365 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20099
+2025-04-12 02:13:30,367 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:30,367 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:30,559 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:30,560 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:30,560 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:30,560 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:30,560 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:30,560 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:30,560 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:30.444336', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:30,563 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:30,565 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20121
+2025-04-12 02:13:30,566 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:30,566 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:30,752 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:30,752 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:30,752 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:30,752 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:30,752 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:30,752 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:30,753 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:30.635601', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:30,754 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:30,757 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19346
+2025-04-12 02:13:30,759 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:30,759 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:30,963 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:30,963 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:30,963 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:30,963 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:30,964 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:30,964 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:30,964 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:30.843441', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:30,967 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:30,969 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19997
+2025-04-12 02:13:30,970 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:30,970 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:31,165 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:31,165 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:31,165 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:31,165 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:31,165 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:31,166 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:31,166 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:31.045684', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:31,168 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:31,169 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19946
+2025-04-12 02:13:31,171 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:31,171 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:31,365 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:31,365 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:31,365 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:31,365 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:31,366 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:31,366 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:31,366 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:31.242946', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:31,368 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:31,370 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19639
+2025-04-12 02:13:31,371 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:31,371 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:31,574 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:31,574 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:31,574 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:31,574 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:31,574 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:31,574 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:31,574 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:31.446017', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:31,576 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:31,579 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 18610
+2025-04-12 02:13:31,580 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:31,580 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:31,774 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:31,775 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:31,775 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:31,775 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:31,775 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:31,775 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:31,775 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:31.655701', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:31,778 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:31,780 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20052
+2025-04-12 02:13:31,781 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:31,781 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:31,950 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:31,950 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:31,950 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:31,950 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:31,950 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:31,950 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:31,950 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:31.848943', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:31,952 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:31,954 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19874
+2025-04-12 02:13:31,955 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:31,955 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:32,140 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:32,140 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:32,140 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:32,140 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:32,141 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:32,141 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:32,141 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:32.023102', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:32,143 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:32,145 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19881
+2025-04-12 02:13:32,146 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:32,146 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:32,335 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:32,335 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:32,335 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:32,335 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:32,335 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:32,336 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:32,336 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:32.216870', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:32,338 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:32,340 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19950
+2025-04-12 02:13:32,341 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:32,341 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:32,528 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:32,528 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:32,528 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:32,528 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:32,528 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:32,528 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:32,528 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:32.412407', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:32,530 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:32,532 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20070
+2025-04-12 02:13:32,534 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:32,534 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:32,722 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:32,722 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:32,722 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:32,722 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:32,722 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:32,722 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:32,723 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:32.604077', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:32,725 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:32,729 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19698
+2025-04-12 02:13:32,730 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:32,730 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:32,923 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:32,923 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:32,923 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:32,923 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:32,923 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:32,923 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:32,923 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:32.802447', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:32,926 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:32,928 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19581
+2025-04-12 02:13:32,929 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:32,929 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:33,117 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:33,117 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:33,117 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:33,117 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:33,117 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:33,117 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:33,117 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:32.999218', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:33,119 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:33,121 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19073
+2025-04-12 02:13:33,123 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:33,123 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:33,315 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:33,315 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:33,315 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:33,315 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:33,316 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:33,316 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:33,316 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:33.191396', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:33,318 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:33,320 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19291
+2025-04-12 02:13:33,321 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:33,322 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:33,514 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:33,514 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:33,514 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:33,514 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:33,514 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:33,515 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:33,515 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:33.393290', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:33,517 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:33,519 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19651
+2025-04-12 02:13:33,520 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:33,520 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:33,702 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:33,702 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:33,702 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:33,702 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:33,702 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:33,702 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:33,702 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:33.589671', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:33,704 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:33,706 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19574
+2025-04-12 02:13:33,707 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:33,707 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:33,890 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:33,890 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:33,890 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:33,890 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:33,890 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:33,891 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:33,891 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:33.773157', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:33,894 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:33,896 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19597
+2025-04-12 02:13:33,897 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:33,897 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:34,085 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:34,085 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:34,085 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:34,086 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:34,086 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:34,086 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:34,086 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:33.967899', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:34,088 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:34,090 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19104
+2025-04-12 02:13:34,092 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:34,092 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:34,275 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:34,275 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:34,275 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:34,275 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:34,275 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:34,275 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:34,275 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:34.161480', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:34,278 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:34,280 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19001
+2025-04-12 02:13:34,281 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:34,281 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:34,467 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:34,467 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:34,467 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:34,467 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:34,467 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:34,467 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:34,467 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:34.349483', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:34,469 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:34,471 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 18715
+2025-04-12 02:13:34,472 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:34,472 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:34,657 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:34,657 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:34,657 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:34,657 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:34,657 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:34,657 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:34,658 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:34.542415', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:34,660 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:34,662 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20056
+2025-04-12 02:13:34,663 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:34,663 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:34,847 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:34,847 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:34,847 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:34,847 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:34,847 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:34,847 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:34,847 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:34.730312', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:34,850 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:34,852 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19914
+2025-04-12 02:13:34,854 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:34,854 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:35,053 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:35,058 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:35,059 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:35,083 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:35,101 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:35,101 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:35,102 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:34.926231', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:35,104 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:35,106 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19754
+2025-04-12 02:13:35,107 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:35,107 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:35,333 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:35,333 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:35,333 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:35,333 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:35,333 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:35,333 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:35,333 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:35.189210', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:35,335 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:35,338 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19569
+2025-04-12 02:13:35,339 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:35,339 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:35,503 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:35,503 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:35,503 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:35,503 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:35,503 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:35,504 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:35,504 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:35.407076', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:35,506 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:35,510 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19699
+2025-04-12 02:13:35,511 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:35,511 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:35,707 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:35,707 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:35,707 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:35,708 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:35,708 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:35,708 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:35,708 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:35.576573', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:35,711 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:35,715 - proctoring - INFO - [main.py:217] - Cleaning up connection for user 1
+2025-04-12 02:13:41,413 - proctoring - INFO - [main.py:133] - WebSocket connection attempt for user 1
+2025-04-12 02:13:41,415 - proctoring - INFO - [connection.py:19] - WebSocket connection accepted for user 1
+2025-04-12 02:13:41,415 - proctoring - INFO - [main.py:162] - WebSocket connection established for user 1
+2025-04-12 02:13:41,424 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 2671
+2025-04-12 02:13:41,426 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:41,429 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:41,443 - proctoring - INFO - [face_detection.py:26] - Face not visible in frame
+2025-04-12 02:13:41,630 - proctoring - INFO - [detection_service.py:28] - Face detection found 1 events
+2025-04-12 02:13:41,630 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:41,631 - proctoring - DEBUG - [detection_service.py:31] - No Face Mesh detections
+2025-04-12 02:13:41,631 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:41,631 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:41,631 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:41,631 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:41.429744', 'event': 'Face not visible in frame'}
+2025-04-12 02:13:41,634 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:41,637 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 7195
+2025-04-12 02:13:41,638 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:41,638 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:41,835 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:41,835 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:41,835 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:41,835 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:41,835 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:41,835 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:41,835 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:41.710214', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:41,838 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:41,841 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 7093
+2025-04-12 02:13:41,842 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:41,842 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:42,065 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:42,066 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:42,066 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:42,066 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:42,066 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:42,066 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:42,066 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:41.923106', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:42,070 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:42,072 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 14241
+2025-04-12 02:13:42,074 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:42,074 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:42,306 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:42,306 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:42,306 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:42,306 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:42,306 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:42,306 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:42,307 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:42.164750', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:42,310 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:42,314 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19645
+2025-04-12 02:13:42,315 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:42,315 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:42,556 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:42,556 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:42,556 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:42,556 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:42,556 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:42,556 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:42,556 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:42.413719', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:42,559 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:42,561 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21923
+2025-04-12 02:13:42,563 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:42,563 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:42,790 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:42,790 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:42,790 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:42,790 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:42,790 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:42,790 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:42,790 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:42.643664', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:42,794 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:42,796 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 21218
+2025-04-12 02:13:42,798 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:42,798 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:43,011 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:43,011 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:43,011 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:43,011 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:43,011 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:43,012 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:43,012 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:42.885277', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:43,014 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:43,016 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19366
+2025-04-12 02:13:43,017 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:43,017 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:43,221 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:43,221 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:43,221 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:43,221 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:43,221 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:43,221 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:43,222 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:43.097566', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:43,224 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:43,226 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19355
+2025-04-12 02:13:43,228 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:43,228 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:43,436 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:43,436 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:43,436 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:43,437 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:43,437 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:43,438 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:43,438 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:43.303661', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:43,441 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:43,446 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 18664
+2025-04-12 02:13:43,447 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:43,447 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:43,675 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:43,675 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:43,675 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:43,675 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:43,675 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:43,675 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:43,676 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:43.539108', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:43,678 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:43,680 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 18407
+2025-04-12 02:13:43,682 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:43,682 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:43,884 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:43,884 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:43,884 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:43,885 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:43,885 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:43,885 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:43,885 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:43.764757', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:43,887 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:43,889 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 18774
+2025-04-12 02:13:43,890 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:43,890 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:44,083 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:44,083 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:44,083 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:44,083 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:44,083 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:44,083 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:44,083 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:43.961544', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:44,085 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:44,087 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 18920
+2025-04-12 02:13:44,088 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:44,088 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:44,280 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:44,280 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:44,280 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:44,280 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:44,280 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:44,280 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:44,281 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:44.157574', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:44,283 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:44,285 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 17920
+2025-04-12 02:13:44,286 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:44,286 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:44,513 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:44,513 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:44,513 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:44,513 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:44,513 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:44,513 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:44,513 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:44.361629', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:44,516 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:44,519 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 18202
+2025-04-12 02:13:44,520 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:44,520 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:44,748 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:44,749 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:44,749 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:44,749 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:44,749 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:44,749 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:44,749 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:44.606137', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:44,752 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:44,755 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 18005
+2025-04-12 02:13:44,756 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:44,756 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:44,966 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:44,966 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:44,966 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:44,967 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:44,967 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:44,967 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:44,967 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:44.836241', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:44,969 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:44,972 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 18802
+2025-04-12 02:13:44,973 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:44,973 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:45,201 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:45,201 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:45,201 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:45,201 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:45,202 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:45,202 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:45,202 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:45.057448', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:45,204 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:45,207 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 18788
+2025-04-12 02:13:45,208 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:45,209 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:45,455 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:45,456 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:45,456 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:45,456 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:45,456 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:45,456 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:45,456 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:45.289825', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:45,460 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:45,462 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19133
+2025-04-12 02:13:45,464 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:45,464 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:45,664 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:45,665 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:45,665 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:45,665 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:45,665 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:45,665 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:45,665 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:45.542454', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:45,668 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:45,674 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19462
+2025-04-12 02:13:45,675 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:45,676 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:45,864 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:45,864 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:45,864 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:45,864 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:45,864 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:45,864 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:45,865 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:45.749374', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:45,867 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:45,869 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19954
+2025-04-12 02:13:45,870 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:45,870 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:46,060 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:46,061 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:46,061 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:46,061 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:46,061 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:46,061 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:46,061 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:45.940573', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:46,063 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:46,065 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 20032
+2025-04-12 02:13:46,066 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:46,066 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:46,265 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:46,265 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:46,265 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:46,265 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:46,265 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:46,266 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:46,266 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:46.139942', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:46,268 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:46,270 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19998
+2025-04-12 02:13:46,271 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:46,271 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:46,470 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:46,470 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:46,470 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:46,470 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:46,470 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:46,470 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:46,470 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:46.344224', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:46,473 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:46,475 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19788
+2025-04-12 02:13:46,477 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:46,477 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:46,665 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:46,665 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:46,665 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:46,665 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:46,666 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:46,666 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:46,666 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:46.550009', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:46,668 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:46,670 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19942
+2025-04-12 02:13:46,671 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:46,671 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:46,863 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:46,863 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:46,864 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:46,864 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:46,864 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:46,864 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:46,864 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:46.743222', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:46,866 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:46,868 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19800
+2025-04-12 02:13:46,869 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:46,869 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:47,061 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:47,061 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:47,061 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:47,061 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:47,061 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:47,061 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:47,061 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:46.942758', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:47,063 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:47,065 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19703
+2025-04-12 02:13:47,066 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:47,067 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:47,259 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:47,259 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:47,259 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:47,259 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:47,259 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:47,259 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:47,260 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:47.145587', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:47,262 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:47,264 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19565
+2025-04-12 02:13:47,265 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:47,265 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:47,436 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:47,436 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:47,436 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:47,436 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:47,436 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:47,436 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:47,436 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:47.332497', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:47,438 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:47,440 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19586
+2025-04-12 02:13:47,441 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:47,442 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:47,628 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:47,628 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:47,628 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:47,628 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:47,628 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:47,628 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:47,628 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:47.509720', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:47,630 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:47,632 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19291
+2025-04-12 02:13:47,633 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:47,633 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:47,824 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:47,825 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:47,825 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:47,825 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:47,825 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:47,825 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:47,825 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:47.704264', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:47,828 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:47,830 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 18450
+2025-04-12 02:13:47,831 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:47,832 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:48,022 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:48,023 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:48,023 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:48,023 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:48,023 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:48,023 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:48,023 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:47.902546', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:48,025 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:48,027 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 18289
+2025-04-12 02:13:48,028 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:48,028 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:48,214 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:48,215 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:48,215 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:48,215 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:48,215 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:48,215 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:48,215 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:48.097397', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:48,218 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:48,231 - proctoring - DEBUG - [image_utils.py:43] - Decoded base64 data length: 19005
+2025-04-12 02:13:48,232 - proctoring - INFO - [detection_service.py:13] - Processing new frame
+2025-04-12 02:13:48,232 - proctoring - INFO - [face_detection.py:9] - Starting face detection
+2025-04-12 02:13:48,426 - proctoring - DEBUG - [detection_service.py:31] - No Face detections
+2025-04-12 02:13:48,426 - proctoring - DEBUG - [detection_service.py:31] - No Hand detections
+2025-04-12 02:13:48,426 - proctoring - INFO - [detection_service.py:28] - Face Mesh detection found 1 events
+2025-04-12 02:13:48,426 - proctoring - DEBUG - [detection_service.py:31] - No YOLO detections
+2025-04-12 02:13:48,426 - proctoring - INFO - [detection_service.py:34] - Total events detected: 1
+2025-04-12 02:13:48,426 - proctoring - INFO - [log_service.py:12] - Attempting to store 1 logs for user 1
+2025-04-12 02:13:48,426 - proctoring - DEBUG - [log_service.py:26] - Created log entry: {'time': '2025-04-12 02:13:48.307057', 'event': 'Mouth movement detected'}
+2025-04-12 02:13:48,428 - proctoring - INFO - [log_service.py:40] - Successfully stored 1 logs
+2025-04-12 02:13:48,430 - proctoring - INFO - [main.py:170] - WebSocket disconnected for user 1
+2025-04-12 02:13:48,430 - proctoring - INFO - [main.py:217] - Cleaning up connection for user 1

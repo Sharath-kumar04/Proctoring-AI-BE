@@ -21,6 +21,7 @@ from models.logs import Log
 from models.users import User
 from routers.auth import SECRET_KEY, ALGORITHM
 from sqlalchemy.orm import Session
+from sqlalchemy.sql import text  # Add this import
 import asyncio
 from starlette.websockets import WebSocketState
 import base64
