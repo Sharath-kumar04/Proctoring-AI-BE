@@ -12,6 +12,7 @@ from pydantic import BaseModel, EmailStr
 import imghdr
 from schemas.auth import UserResponse, Token
 from config.settings import settings
+from utils.logger import logger
 
 router = APIRouter()
 
@@ -163,42 +164,70 @@ async def login_face(
     image: UploadFile = File(..., description="Live captured face image"),
     db: Session = Depends(get_db)
 ):
-    """
-    Login with face recognition using DeepFace
-    """
+    """Login with face recognition"""
     try:
+        # Validate image type
+        if not image.content_type in ["image/jpeg", "image/png"]:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Invalid image format. Only JPEG and PNG are supported."
+            )
+
         image_data = await image.read()
         if not image_data:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="Empty image file"
             )
-        
+
         # Check against all users
-        for user in db.query(User).all():
+        best_match = None
+        best_confidence = 0
+        comparison_errors = []
+        
+        users = db.query(User).all()
+        logger.info(f"Comparing face against {len(users)} users")
+        
+        for user in users:
+            if not user.image:
+                logger.warning(f"User {user.email} has no stored face image")
+                continue
+                
             match, result = compare_faces(user.image, image_data)
             
-            if isinstance(result, dict) and match:
-                access_token = create_access_token(data={"sub": user.email})
-                return Token(
-                    access_token=access_token,
-                    token_type="bearer",
-                    id=user.id
-                )
-            elif isinstance(result, str):
-                raise HTTPException(
-                    status_code=status.HTTP_400_BAD_REQUEST,
-                    detail=result
-                )
+            if isinstance(result, dict):
+                confidence = result.get("confidence", 0)
+                logger.info(f"Face comparison with {user.email}: confidence={confidence}")
+                if match and confidence > best_confidence:
+                    best_confidence = confidence
+                    best_match = user
+            else:
+                comparison_errors.append(result)
         
+        if best_match:
+            logger.info(f"Face login successful for {best_match.email} with confidence {best_confidence}")
+            access_token = create_access_token(data={"sub": best_match.email})
+            return Token(
+                access_token=access_token,
+                token_type="bearer",
+                id=best_match.id
+            )
+
+        if comparison_errors:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"Face detection errors: {'; '.join(comparison_errors)}"
+            )
+
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Face not recognized"
         )
-        
+
     except HTTPException as he:
         raise he
     except Exception as e:
+        logger.error(f"Face authentication error: {str(e)}", exc_info=True)
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Face authentication failed: {str(e)}"
