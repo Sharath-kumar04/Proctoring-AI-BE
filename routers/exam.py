@@ -226,6 +226,53 @@ async def stop_exam_session(
             content={"error": "Failed to stop session"}
         )
 
+@router.post("/force-close/{user_id}")
+async def force_close_session(
+    user_id: int,
+    credentials: HTTPAuthorizationCredentials = Security(security),
+    db: Session = Depends(get_db)
+):
+    """Force close session and WebSocket connection without cleanup delay"""
+    try:
+        # Quick auth check
+        current_user = get_current_user(credentials.credentials, db)
+        if current_user.id != user_id:
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
+
+        # Set cooldown before cleanup
+        manager.set_cooldown(user_id, 5)  # 5 second cooldown
+        
+        # Force cleanup immediately
+        cleanup_success = await handle_session_cleanup(user_id, db, "session_force_closed")
+        if not cleanup_success:
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail="Failed to force close session"
+            )
+
+        # Delete logs immediately
+        try:
+            deleted_count = db.query(Log).filter(Log.user_id == user_id).delete()
+            db.commit()
+            logger.info(f"Force deleted {deleted_count} logs for user {user_id}")
+        except Exception as e:
+            logger.error(f"Failed to delete logs: {str(e)}")
+            db.rollback()
+            
+        return JSONResponse(
+            status_code=status.HTTP_200_OK,
+            content={"message": "Session forcefully closed and logs cleared"}
+        )
+
+    except HTTPException as he:
+        raise he
+    except Exception as e:
+        logger.error(f"Force close error: {str(e)}")
+        return JSONResponse(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            content={"error": "Failed to force close session"}
+        )
+
 @router.get("/summary/{user_id}", response_model=ExamSummary)
 async def get_exam_summary(user_id: int, db: Session = Depends(get_db)):
     """Get exam summary for a user"""

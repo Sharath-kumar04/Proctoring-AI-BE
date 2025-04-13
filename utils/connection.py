@@ -4,14 +4,26 @@ from utils.logger import logger
 import asyncio
 from starlette.websockets import WebSocketState
 import json
+from datetime import datetime, timedelta
 
 class ConnectionManager:
     def __init__(self):
         self.active_connections: Dict[int, WebSocket] = {}
         self.connection_states: Dict[int, bool] = {}
+        self.cooldowns: Dict[int, datetime] = {}
         
     async def connect(self, websocket: WebSocket, user_id: int):
         try:
+            # Check cooldown
+            if user_id in self.cooldowns:
+                cooldown_end = self.cooldowns[user_id]
+                if datetime.utcnow() < cooldown_end:
+                    remaining = (cooldown_end - datetime.utcnow()).seconds
+                    logger.warning(f"Connection attempt during cooldown. {remaining}s remaining")
+                    return False
+                else:
+                    self.cooldowns.pop(user_id)
+
             await self.disconnect(user_id)  # Close existing connection
             await websocket.accept()
             self.active_connections[user_id] = websocket
@@ -68,6 +80,11 @@ class ConnectionManager:
             except Exception as e:
                 logger.error(f"Error sending message: {str(e)}")
                 await self.disconnect(user_id)
+
+    def set_cooldown(self, user_id: int, duration: int = 5):
+        """Set connection cooldown for user"""
+        self.cooldowns[user_id] = datetime.utcnow() + timedelta(seconds=duration)
+        logger.info(f"Set {duration}s cooldown for user {user_id}")
 
 # Singleton instance
 manager = ConnectionManager()
