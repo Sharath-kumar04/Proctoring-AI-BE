@@ -6,7 +6,7 @@
 # Core dependencies
 flask==2.2.5
 requests==2.31.0
-numpy>=1.24.3  # Updated to newer version
+numpy>=1.24.3
 pandas>=2.0.3
 scikit-learn>=1.0.2
 matplotlib>=3.5.3
@@ -15,17 +15,23 @@ websockets>=11.0.3
 fastapi>=0.95.2
 
 # ML/CV dependencies
-ultralytics>=8.0.196
+ultralytics==8.3.107
 opencv-python-headless==4.10.0.84
 mediapipe>=0.10.5
-torch>=2.0.1
-torchvision>=0.15.2
+torch>=2.0.1 --extra-index-url https://download.pytorch.org/whl/cpu
+torchvision>=0.15.2 --extra-index-url https://download.pytorch.org/whl/cpu
+
+# Face Recognition dependencies
+tensorflow==2.15.0
+tf-keras==2.15.0  # Pin specific version
+keras>=2.15.0     # Add explicit keras dependency
+deepface==0.0.79  # Pin specific version
+retina-face>=0.0.13  # Add for face detection backend
 
 # Database and auth dependencies
 mysql-connector-python>=8.0.33
 SQLAlchemy>=2.0.23
 python-multipart>=0.0.6
-face-recognition>=1.3.0
 python-jose[cryptography]>=3.3.0
 passlib[bcrypt]>=1.7.4
 email-validator>=2.0.0

@@ -22,11 +22,17 @@ def detect_face(frame):
         face_results = face_detection.process(frame_rgb)
         
         if not face_results.detections:
-            event = "Face not detected"
+            event = "User absence detected"
             logger.info(event)
             logs.append({"time": timestamp, "event": event})
         else:
-            for detection in face_results.detections:
+            face_count = len(face_results.detections)
+            if face_count > 1:
+                event = "Background person detected"
+                logger.info(f"{event}: {face_count} faces found")
+                logs.append({"time": timestamp, "event": event})
+            else:
+                detection = face_results.detections[0]
                 bbox = detection.location_data.relative_bounding_box
                 event = "Unusual face movement detected" if bbox.width > 0.5 else "Face detected"
                 logger.info(f"{event} with confidence {detection.score[0]:.2f}")

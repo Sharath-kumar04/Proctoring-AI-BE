@@ -10,7 +10,6 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 import io
 from pydantic import BaseModel, EmailStr
 import imghdr
-import face_recognition
 from schemas.auth import UserResponse, Token
 from config.settings import settings
 
@@ -103,22 +102,6 @@ async def signup(
                 detail="Empty image file"
             )
         
-        # Detect face in the image
-        image_array = face_recognition.load_image_file(io.BytesIO(image_data))
-        face_locations = face_recognition.face_locations(image_array)
-        
-        if not face_locations:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="No face detected in the image"
-            )
-        
-        if len(face_locations) > 1:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Multiple faces detected. Please provide an image with a single face"
-            )
-        
         # Hash password
         hashed_password = pwd_context.hash(password)
         
@@ -181,7 +164,7 @@ async def login_face(
     db: Session = Depends(get_db)
 ):
     """
-    Login with face recognition using a live captured image
+    Login with face recognition using DeepFace
     """
     try:
         image_data = await image.read()
@@ -194,15 +177,15 @@ async def login_face(
         # Check against all users
         for user in db.query(User).all():
             match, result = compare_faces(user.image, image_data)
-            if match:
+            
+            if isinstance(result, dict) and match:
                 access_token = create_access_token(data={"sub": user.email})
                 return Token(
                     access_token=access_token,
                     token_type="bearer",
-                    id=user.id  # Changed from user_id to id
+                    id=user.id
                 )
             elif isinstance(result, str):
-                # If result is an error message
                 raise HTTPException(
                     status_code=status.HTTP_400_BAD_REQUEST,
                     detail=result

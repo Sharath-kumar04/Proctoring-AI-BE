@@ -21,6 +21,7 @@ from models.logs import Log
 from models.users import User
 from routers.auth import SECRET_KEY, ALGORITHM
 from sqlalchemy.orm import Session
+from sqlalchemy import text  # Add text import
 import asyncio
 from starlette.websockets import WebSocketState
 import base64
@@ -69,7 +70,7 @@ async def startup_event():
         # Test database connection before init
         try:
             with engine.connect() as conn:
-                result = conn.execute(text("SELECT 1"))
+                conn.execute(text("SELECT 1"))
                 logger.info("Database connection test successful")
         except Exception as e:
             logger.error(f"Database connection failed: {str(e)}")

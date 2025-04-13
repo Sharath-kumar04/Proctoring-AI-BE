@@ -1,48 +1,48 @@
-import face_recognition
+from deepface import DeepFace
 import numpy as np
 import io
-from PIL import Image
 import cv2
+from PIL import Image
+from utils.logger import logger
 
-def compare_faces(known_image, unknown_image, tolerance=0.6):
+def compare_faces(known_image, unknown_image, threshold=0.6):
     """
-    Compare known and unknown face images
+    Compare known and unknown face images using DeepFace
     Args:
         known_image: Stored user image (bytes)
         unknown_image: Live captured image (bytes)
-        tolerance: Face recognition tolerance (lower is more strict)
+        threshold: Face recognition threshold (higher is more strict)
     """
     try:
-        # Convert stored image to face encoding
-        known_image_np = face_recognition.load_image_file(io.BytesIO(known_image))
-        known_encodings = face_recognition.face_encodings(known_image_np)
+        # Convert bytes to numpy arrays
+        known_img = cv2.imdecode(np.frombuffer(known_image, np.uint8), cv2.IMREAD_COLOR)
+        unknown_img = cv2.imdecode(np.frombuffer(unknown_image, np.uint8), cv2.IMREAD_COLOR)
         
-        if not known_encodings:
-            return False, "No face found in stored image"
-        
-        # Convert live captured image to face encoding
-        unknown_image_np = face_recognition.load_image_file(io.BytesIO(unknown_image))
-        unknown_encodings = face_recognition.face_encodings(unknown_image_np)
-        
-        if not unknown_encodings:
-            return False, "No face found in captured image"
-            
-        # Compare faces with tolerance
-        results = face_recognition.compare_faces(
-            [known_encodings[0]], 
-            unknown_encodings[0],
-            tolerance=tolerance
+        # Use DeepFace verify with VGG-Face model
+        result = DeepFace.verify(
+            img1_path=known_img,
+            img2_path=unknown_img,
+            model_name="VGG-Face",
+            distance_metric="cosine",
+            enforce_detection=True,
+            detector_backend="retinaface"
         )
         
-        # Calculate face distance for confidence measure
-        face_distance = face_recognition.face_distance([known_encodings[0]], unknown_encodings[0])
-        confidence = 1 - float(face_distance)
+        distance = float(result.get("distance", 1.0))
+        verified = distance < threshold
         
-        return results[0], {
-            "match": results[0],
-            "confidence": round(confidence * 100, 2),
-            "tolerance": tolerance
+        logger.info(f"Face comparison result: distance={distance:.3f}, verified={verified}")
+        
+        return verified, {
+            "match": verified,
+            "confidence": round((1 - distance) * 100, 2),
+            "model": "VGG-Face",
+            "distance": distance
         }
         
+    except ValueError as ve:
+        logger.error(f"Face detection error: {str(ve)}")
+        return False, "No face detected in one or both images"
     except Exception as e:
+        logger.error(f"Face comparison error: {str(e)}")
         return False, f"Face comparison error: {str(e)}"

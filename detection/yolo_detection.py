@@ -51,10 +51,10 @@ def detect_yolo(frame):
                 logger.error("YOLO model not loaded")
                 return []
 
-        # Process frame
         results = model.predict(frame, conf=0.4)[0]
         
         if results.boxes:
+            person_count = 0
             for box in results.boxes:
                 cls = int(box.cls[0])
                 conf = float(box.conf[0])
@@ -63,10 +63,20 @@ def detect_yolo(frame):
                 logger.info(f"Detection: {name} ({conf:.2f})")
                 
                 if conf > 0.4:
-                    if name == "cell phone":
+                    if name == "person":
+                        person_count += 1
+                    elif name in ["cell phone", "mobile phone"]:
                         logs.append({"time": timestamp, "event": "Phone detected"})
-                    elif name == "person" and len(results.boxes) > 1:
-                        logs.append({"time": timestamp, "event": "Background person detected"})
+                    elif name == "tablet":
+                        logs.append({"time": timestamp, "event": "Tablet detected"})
+                    elif name == "book":
+                        logs.append({"time": timestamp, "event": "Book detected"})
+                    
+            # Check for multiple people after counting
+            if person_count > 1:
+                logs.append({"time": timestamp, "event": "Background person detected"})
+            elif person_count == 0:
+                logs.append({"time": timestamp, "event": "User absence detected"})
                     
     except Exception as e:
         logger.error(f"YOLO detection error: {str(e)}")
