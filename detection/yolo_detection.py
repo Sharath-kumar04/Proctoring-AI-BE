@@ -19,33 +19,49 @@ MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "yolov8n.p
 class YOLODetector:
     def __init__(self, model_path: str):
         self.model = YOLO(model_path)
-        self.confidence_threshold = 0.85  # Set higher confidence threshold
+        self.confidence_threshold = {
+            'person': 0.85,
+            'cell phone': 0.25,  # Lower threshold for phones
+            'phone': 0.25,
+            'mobile phone': 0.25
+        }
+        # Add more phone-related classes
+        self.phone_classes = {'cell phone', 'phone', 'mobile phone', 'smartphone', 'mobile'}
 
     def detect(self, frame) -> List[Dict[str, Any]]:
-        results = self.model(frame, conf=self.confidence_threshold)[0]
+        results = self.model(frame)[0]
         detections = []
         
-        person_count = 0
-        max_confidence = 0.0
-        
+        # Check for phones first
         for r in results.boxes.data.tolist():
             confidence = float(r[4])
             class_id = int(r[5])
+            class_name = self.model.names[class_id].lower()
             
-            # Only process person class (usually class 0)
-            if class_id == 0:  # person class
-                person_count += 1
-                max_confidence = max(max_confidence, confidence)
+            if class_name in self.phone_classes and confidence > self.confidence_threshold['cell phone']:
+                detections.append({
+                    "class": "phone",
+                    "event_type": "phone_detected",
+                    "confidence": confidence,
+                    "suspicious": True
+                })
+                logger.info(f"Phone detected with confidence {confidence:.2f}")
+                
+        # Then check for multiple people
+        person_detections = [
+            r for r in results.boxes.data.tolist()
+            if (int(r[5]) == 0 and float(r[4]) > self.confidence_threshold['person'])
+        ]
         
-        # Only report if we detect more than one person with high confidence
-        if person_count > 1 and max_confidence > self.confidence_threshold:
+        if len(person_detections) > 1:
+            max_confidence = max(float(r[4]) for r in person_detections)
             detections.append({
                 "class": "person",
-                "count": person_count,
+                "event_type": "multiple_people",
                 "confidence": max_confidence,
-                "suspicious": True
+                "suspicious": True,
+                "count": len(person_detections)
             })
-            logger.warning(f"Multiple people detected: {person_count} with confidence {max_confidence}")
         
         return detections
 
@@ -76,17 +92,23 @@ def detect_yolo(frame):
     try:
         detector = load_model()
         if detector is None:
-            logger.error("YOLO model not loaded")
             return []
 
         detections = detector.detect(frame)
         
         for detection in detections:
             if detection["suspicious"]:
-                logs.append({
-                    "time": timestamp,
-                    "event": f"Suspicious activity detected: {detection['count']} people with confidence {detection['confidence']:.2f}"
-                })
+                event_msg = {
+                    "phone": "Phone detected",
+                    "person": "Multiple people detected"
+                }.get(detection["class"])
+                
+                if event_msg:
+                    logs.append({
+                        "time": timestamp,
+                        "event": event_msg,
+                        "event_type": detection["event_type"]
+                    })
                     
     except Exception as e:
         logger.error(f"YOLO detection error: {str(e)}")

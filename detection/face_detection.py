@@ -1,50 +1,82 @@
-import cv2
 import mediapipe as mp
-from datetime import datetime
+import numpy as np
 from utils.logger import logger
+from datetime import datetime
 
-mp_face_detection = mp.solutions.face_detection
+mp_face_mesh = mp.solutions.face_mesh
+face_mesh = mp_face_mesh.FaceMesh(
+    max_num_faces=1,
+    refine_landmarks=True,
+    min_detection_confidence=0.5
+)
+
+# Store previous landmarks for movement detection
+prev_landmarks = None
 
 def detect_face(frame):
-    logger.info("Starting face detection")
+    global prev_landmarks
     logs = []
     timestamp = str(datetime.now())
-    
-    try:
-        # Initialize face detection with CPU
-        face_detection = mp_face_detection.FaceDetection(
-            min_detection_confidence=0.5,
-            model_selection=0  # Use short-range model
-        )
-        
-        # Process frame
-        frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        face_results = face_detection.process(frame_rgb)
-        
-        if not face_results.detections:
-            event = "User absence detected"
-            logger.info(event)
-            logs.append({"time": timestamp, "event": event})
-        else:
-            face_count = len(face_results.detections)
-            if face_count > 1:
-                event = "Background person detected"
-                logger.info(f"{event}: {face_count} faces found")
-                logs.append({"time": timestamp, "event": event})
-            else:
-                detection = face_results.detections[0]
-                bbox = detection.location_data.relative_bounding_box
-                event = "Unusual face movement detected" if bbox.width > 0.5 else "Face detected"
-                logger.info(f"{event} with confidence {detection.score[0]:.2f}")
-                logs.append({"time": timestamp, "event": event})
 
+    try:
+        results = face_mesh.process(frame)
+        if results.multi_face_landmarks:
+            landmarks = results.multi_face_landmarks[0]
+            
+            # Log face detection
+            logs.append({
+                "time": timestamp,
+                "event": "Face detected",
+                "event_type": "face_detected"
+            })
+            
+            # Eye movement detection
+            if prev_landmarks:
+                eye_movement = detect_eye_movement(landmarks, prev_landmarks)
+                if eye_movement:
+                    logs.append({
+                        "time": timestamp,
+                        "event": "Eye movement detected",
+                        "event_type": "eye_movement"
+                    })
+                
+                mouth_movement = detect_mouth_movement(landmarks, prev_landmarks)
+                if mouth_movement:
+                    logs.append({
+                        "time": timestamp,
+                        "event": "Mouth movement detected",
+                        "event_type": "mouth_movement"
+                    })
+            
+            prev_landmarks = landmarks
+            
     except Exception as e:
-        logger.error(f"Face detection error: {str(e)}", exc_info=True)
-        # Return empty logs on error to continue processing
-        return []
-    finally:
-        # Cleanup
-        if 'face_detection' in locals():
-            face_detection.close()
-    
+        logger.error(f"Face detection error: {str(e)}")
+        
     return logs
+
+def detect_eye_movement(current, previous, threshold=0.02):
+    left_eye = np.mean([
+        [current.landmark[33].x, current.landmark[33].y],
+        [current.landmark[133].x, current.landmark[133].y]
+    ], axis=0)
+    
+    prev_left_eye = np.mean([
+        [previous.landmark[33].x, previous.landmark[33].y],
+        [previous.landmark[133].x, previous.landmark[133].y]
+    ], axis=0)
+    
+    return np.linalg.norm(left_eye - prev_left_eye) > threshold
+
+def detect_mouth_movement(current, previous, threshold=0.03):
+    mouth = np.mean([
+        [current.landmark[0].x, current.landmark[0].y],
+        [current.landmark[17].x, current.landmark[17].y]
+    ], axis=0)
+    
+    prev_mouth = np.mean([
+        [previous.landmark[0].x, previous.landmark[0].y],
+        [previous.landmark[17].x, previous.landmark[17].y]
+    ], axis=0)
+    
+    return np.linalg.norm(mouth - prev_mouth) > threshold
