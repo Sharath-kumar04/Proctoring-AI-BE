@@ -22,6 +22,10 @@ security = HTTPBearer()
 # Initialize thread pool for frame processing
 frame_executor = ThreadPoolExecutor(max_workers=4)
 
+# Add these constants at the top with other constants
+YOLO_CONFIDENCE_THRESHOLD = 0.85  # Increase confidence threshold for person detection
+SUSPICIOUS_ACTIVITY_THRESHOLD = 0.90  # Higher threshold for reporting suspicious activities
+
 class SessionInfo(BaseModel):
     user_id: int
     status: str
@@ -300,11 +304,20 @@ async def get_exam_summary(user_id: int, db: Session = Depends(get_db)):
         suspicious_activities: Dict[str, int] = {}
         total_checks = len(logs)
         face_detections = 0
-        non_suspicious_events = {"face_detected", "session_stopped", "session_summarized"}
+        non_suspicious_events = {
+            "face_detected", 
+            "session_stopped", 
+            "session_summarized", 
+            "person_detected"  # Add normal person detection as non-suspicious
+        }
         
         for log in logs:
             if log.event_type == "face_detected":
                 face_detections += 1
+            elif log.event_type == "person_detected":
+                # Only count as suspicious if above threshold
+                if log.confidence and float(log.confidence) > SUSPICIOUS_ACTIVITY_THRESHOLD:
+                    suspicious_activities["multiple_people"] = suspicious_activities.get("multiple_people", 0) + 1
             elif log.event_type not in non_suspicious_events:
                 suspicious_activities[log.event_type] = suspicious_activities.get(log.event_type, 0) + 1
         
@@ -340,4 +353,46 @@ async def get_exam_summary(user_id: int, db: Session = Depends(get_db)):
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Failed to generate exam summary"
+        )
+
+@router.post("/clear-logs/{user_id}")
+async def clear_exam_logs(
+    user_id: int,
+    credentials: HTTPAuthorizationCredentials = Security(security),
+    db: Session = Depends(get_db)
+):
+    """Clear exam logs for a user"""
+    try:
+        # Verify user authorization
+        current_user = get_current_user(credentials.credentials, db)
+        if current_user.id != user_id:
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
+
+        # Get logs count before deletion
+        logs_count = db.query(Log).filter(Log.user_id == user_id).count()
+        
+        if logs_count == 0:
+            return JSONResponse(
+                status_code=status.HTTP_200_OK,
+                content={"message": "No logs found to clear"}
+            )
+
+        # Delete all logs for the user
+        db.query(Log).filter(Log.user_id == user_id).delete()
+        db.commit()
+        
+        logger.info(f"Cleared {logs_count} logs for user {user_id}")
+        return JSONResponse(
+            status_code=status.HTTP_200_OK,
+            content={"message": f"Successfully cleared {logs_count} logs"}
+        )
+
+    except HTTPException as he:
+        raise he
+    except Exception as e:
+        db.rollback()
+        logger.error(f"Failed to clear logs: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to clear logs"
         )

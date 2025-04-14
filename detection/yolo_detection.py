@@ -5,6 +5,7 @@ from datetime import datetime
 import logging
 from ultralytics import YOLO
 from utils.logger import logger
+from typing import List, Dict, Any
 
 # Setup logging with more details
 logging.basicConfig(
@@ -13,70 +14,79 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-model = None
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "yolov8n.pt")
 
+class YOLODetector:
+    def __init__(self, model_path: str):
+        self.model = YOLO(model_path)
+        self.confidence_threshold = 0.85  # Set higher confidence threshold
+
+    def detect(self, frame) -> List[Dict[str, Any]]:
+        results = self.model(frame, conf=self.confidence_threshold)[0]
+        detections = []
+        
+        person_count = 0
+        max_confidence = 0.0
+        
+        for r in results.boxes.data.tolist():
+            confidence = float(r[4])
+            class_id = int(r[5])
+            
+            # Only process person class (usually class 0)
+            if class_id == 0:  # person class
+                person_count += 1
+                max_confidence = max(max_confidence, confidence)
+        
+        # Only report if we detect more than one person with high confidence
+        if person_count > 1 and max_confidence > self.confidence_threshold:
+            detections.append({
+                "class": "person",
+                "count": person_count,
+                "confidence": max_confidence,
+                "suspicious": True
+            })
+            logger.warning(f"Multiple people detected: {person_count} with confidence {max_confidence}")
+        
+        return detections
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 def load_model():
-    global model
     try:
         logger.info("Loading YOLOv8 model...")
         
         if os.path.exists(MODEL_PATH):
             logger.info(f"Loading model from {MODEL_PATH}")
-            model = YOLO(MODEL_PATH)
+            return YOLODetector(MODEL_PATH)
         else:
             logger.info("Downloading YOLOv8n model...")
             model = YOLO('yolov8n')
             # Save model for future use
             model.save(MODEL_PATH)
-        
-        model.to(device)
-        logger.info(f"Model loaded successfully on {device}")
-        return model
+            return YOLODetector(MODEL_PATH)
         
     except Exception as e:
         logger.error(f"Error loading model: {str(e)}", exc_info=True)
         return None
 
 def detect_yolo(frame):
-    global model
     logs = []
     timestamp = str(datetime.now())
 
     try:
-        if model is None:
-            model = load_model()
-            if model is None:
-                logger.error("YOLO model not loaded")
-                return []
+        detector = load_model()
+        if detector is None:
+            logger.error("YOLO model not loaded")
+            return []
 
-        results = model.predict(frame, conf=0.4)[0]
+        detections = detector.detect(frame)
         
-        if results.boxes:
-            person_count = 0
-            for box in results.boxes:
-                cls = int(box.cls[0])
-                conf = float(box.conf[0])
-                name = model.names[cls]
-                
-                logger.info(f"Detection: {name} ({conf:.2f})")
-                
-                if conf > 0.4:
-                    if name == "person":
-                        person_count += 1
-                    elif name in ["cell phone", "mobile phone"]:
-                        logs.append({"time": timestamp, "event": "Phone detected"})
-                    elif name == "tablet":
-                        logs.append({"time": timestamp, "event": "Tablet detected"})
-                    elif name == "book":
-                        logs.append({"time": timestamp, "event": "Book detected"})
-                    
-            # Check for multiple people after counting
-            if person_count > 1:
-                logs.append({"time": timestamp, "event": "Background person detected"})
-            elif person_count == 0:
-                logs.append({"time": timestamp, "event": "User absence detected"})
+        for detection in detections:
+            if detection["suspicious"]:
+                logs.append({
+                    "time": timestamp,
+                    "event": f"Suspicious activity detected: {detection['count']} people with confidence {detection['confidence']:.2f}"
+                })
                     
     except Exception as e:
         logger.error(f"YOLO detection error: {str(e)}")
