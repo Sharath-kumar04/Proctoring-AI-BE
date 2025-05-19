@@ -6,6 +6,7 @@ import logging
 from ultralytics import YOLO
 from utils.logger import logger
 from typing import List, Dict, Any
+import mediapipe as mp
 
 # Setup logging with more details
 logging.basicConfig(
@@ -27,12 +28,43 @@ class YOLODetector:
         }
         # Add more phone-related classes
         self.phone_classes = {'cell phone', 'phone', 'mobile phone', 'smartphone', 'mobile'}
+        self.last_person_detected = datetime.now()
+        self.absence_threshold = 0.5  # Reduced to 0.5 seconds
+        self.face_classes = {'face', 'person', 'head'}  # Add face detection classes
+        self.face_detector = mp.solutions.face_detection.FaceDetection(
+            model_selection=1,
+            min_detection_confidence=0.3  # Lower confidence threshold
+        )
 
     def detect(self, frame) -> List[Dict[str, Any]]:
         results = self.model(frame)[0]
         detections = []
+        current_time = datetime.now()
         
-        # Check for phones first
+        # Convert frame to RGB for MediaPipe
+        frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        mp_results = self.face_detector.process(frame_rgb)
+        
+        # Check for face presence - no time threshold
+        face_detected = (mp_results.detections is not None and len(mp_results.detections) > 0)
+        
+        # Always add absence detection if no face is detected
+        if not face_detected:
+            detections.append({
+                "class": "absence",
+                "event_type": "face_not_visible",
+                "confidence": 1.0,
+                "suspicious": True,
+                "duration": 0,  # Immediate detection
+                "reason": "Face not visible in camera"
+            })
+            logger.warning("User absence detected")
+            
+        # Update last detection time if face is present
+        if face_detected:
+            self.last_person_detected = current_time
+
+        # Check for phones
         for r in results.boxes.data.tolist():
             confidence = float(r[4])
             class_id = int(r[5])
@@ -100,14 +132,16 @@ def detect_yolo(frame):
             if detection["suspicious"]:
                 event_msg = {
                     "phone": "Phone detected",
-                    "person": "Multiple people detected"
+                    "person": "Multiple people detected", 
+                    "absence": "user absence detected"  # Updated message
                 }.get(detection["class"])
                 
                 if event_msg:
                     logs.append({
                         "time": timestamp,
                         "event": event_msg,
-                        "event_type": detection["event_type"]
+                        "event_type": detection["event_type"],
+                        "details": detection.get("reason", "")  # Add reason to logs
                     })
                     
     except Exception as e:
