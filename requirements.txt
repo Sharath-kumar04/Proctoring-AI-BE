@@ -3,6 +3,8 @@
 # Ubuntu: apt-get install cmake
 # Windows: Download from cmake.org
 
+# Python version 3.9
+
 # Core dependencies
 flask==2.2.5
 requests==2.31.0

@@ -22,70 +22,105 @@ class YOLODetector:
         self.model = YOLO(model_path)
         self.confidence_threshold = {
             'person': 0.85,
-            'cell phone': 0.25,  # Lower threshold for phones
+            'cell phone': 0.25,
             'phone': 0.25,
             'mobile phone': 0.25
         }
-        # Add more phone-related classes
         self.phone_classes = {'cell phone', 'phone', 'mobile phone', 'smartphone', 'mobile'}
         self.last_person_detected = datetime.now()
-        self.absence_threshold = 0.5  # Reduced to 0.5 seconds
-        self.face_classes = {'face', 'person', 'head'}  # Add face detection classes
-        self.face_detector = mp.solutions.face_detection.FaceDetection(
-            model_selection=1,
-            min_detection_confidence=0.3  # Lower confidence threshold
-        )
+        self.absence_threshold = 0.5
+        self.face_classes = {'face', 'person', 'head'}
+        
+        try:
+            self.face_detector = mp.solutions.face_detection.FaceDetection(
+                model_selection=1,
+                min_detection_confidence=0.3
+            )
+        except Exception as e:
+            logger.error(f"Failed to initialize MediaPipe face detector: {e}")
+            self.face_detector = None
+
+        # Add detection state tracking
+        self.last_detection_time = {}  # Track last detection time for each event type
+        self.detection_cooldown = {    # Cooldown in seconds for each event type
+            'face_not_visible': 2.0,   # Wait 2 seconds before logging absence again
+            'phone_detected': 3.0,     # Wait 3 seconds before logging phone again
+            'multiple_people': 2.0     # Wait 2 seconds before logging multiple people again
+        }
+        self.min_consecutive_detections = 2  # Require multiple consecutive detections
+
+    def _check_cooldown(self, event_type: str) -> bool:
+        """Check if enough time has passed since last detection"""
+        current_time = datetime.now()
+        last_time = self.last_detection_time.get(event_type)
+        
+        if last_time is None:
+            return True
+            
+        cooldown = self.detection_cooldown.get(event_type, 1.0)
+        time_diff = (current_time - last_time).total_seconds()
+        
+        return time_diff >= cooldown
 
     def detect(self, frame) -> List[Dict[str, Any]]:
         results = self.model(frame)[0]
         detections = []
         current_time = datetime.now()
         
-        # Convert frame to RGB for MediaPipe
-        frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        mp_results = self.face_detector.process(frame_rgb)
-        
-        # Check for face presence - no time threshold
-        face_detected = (mp_results.detections is not None and len(mp_results.detections) > 0)
-        
-        # Always add absence detection if no face is detected
-        if not face_detected:
+        # Face detection with error handling and cooldown
+        face_detected = False
+        if self.face_detector:
+            try:
+                frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                mp_results = self.face_detector.process(frame_rgb)
+                face_detected = (mp_results.detections is not None and len(mp_results.detections) > 0)
+            except Exception as e:
+                logger.error(f"Face detection error: {e}")
+                person_detections = [r for r in results.boxes.data.tolist() 
+                                  if int(r[5]) == 0 and float(r[4]) > self.confidence_threshold['person']]
+                face_detected = len(person_detections) > 0
+
+        if not face_detected and self._check_cooldown('face_not_visible'):
             detections.append({
                 "class": "absence",
                 "event_type": "face_not_visible",
                 "confidence": 1.0,
                 "suspicious": True,
-                "duration": 0,  # Immediate detection
+                "duration": 0,
                 "reason": "Face not visible in camera"
             })
+            self.last_detection_time['face_not_visible'] = current_time
             logger.warning("User absence detected")
-            
-        # Update last detection time if face is present
+
+        # Update detection state for phones and multiple people
         if face_detected:
             self.last_person_detected = current_time
 
-        # Check for phones
+        # Check for phones with cooldown
         for r in results.boxes.data.tolist():
             confidence = float(r[4])
             class_id = int(r[5])
             class_name = self.model.names[class_id].lower()
             
-            if class_name in self.phone_classes and confidence > self.confidence_threshold['cell phone']:
+            if (class_name in self.phone_classes and 
+                confidence > self.confidence_threshold['cell phone'] and 
+                self._check_cooldown('phone_detected')):
                 detections.append({
                     "class": "phone",
                     "event_type": "phone_detected",
                     "confidence": confidence,
                     "suspicious": True
                 })
+                self.last_detection_time['phone_detected'] = current_time
                 logger.info(f"Phone detected with confidence {confidence:.2f}")
-                
-        # Then check for multiple people
+
+        # Check for multiple people with cooldown
         person_detections = [
             r for r in results.boxes.data.tolist()
             if (int(r[5]) == 0 and float(r[4]) > self.confidence_threshold['person'])
         ]
         
-        if len(person_detections) > 1:
+        if len(person_detections) > 1 and self._check_cooldown('multiple_people'):
             max_confidence = max(float(r[4]) for r in person_detections)
             detections.append({
                 "class": "person",
@@ -94,7 +129,8 @@ class YOLODetector:
                 "suspicious": True,
                 "count": len(person_detections)
             })
-        
+            self.last_detection_time['multiple_people'] = current_time
+
         return detections
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
