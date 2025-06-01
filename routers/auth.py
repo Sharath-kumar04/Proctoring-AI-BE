@@ -180,49 +180,71 @@ async def login_face(
                 detail="Empty image file"
             )
 
-        # Check against all users
+        # Get all users with stored face images
+        users = db.query(User).filter(User.image.isnot(None)).all()
+        if not users:
+            logger.warning("No users with stored face images found")
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="No registered face images found"
+            )
+
+        logger.info(f"Comparing face against {len(users)} registered users")
+        
+        # Track best match and errors
         best_match = None
         best_confidence = 0
-        comparison_errors = []
-        
-        users = db.query(User).all()
-        logger.info(f"Comparing face against {len(users)} users")
+        min_confidence_threshold = 0.85  # Increased confidence threshold
         
         for user in users:
-            if not user.image:
-                logger.warning(f"User {user.email} has no stored face image")
-                continue
+            try:
+                match, result = compare_faces(
+                    known_image=user.image,
+                    unknown_image=image_data,
+                    threshold=0.6  # Adjust threshold for stricter matching
+                )
                 
-            match, result = compare_faces(user.image, image_data)
+                if isinstance(result, dict):
+                    confidence = result.get("confidence", 0)
+                    logger.info(f"Face comparison result for {user.email}: "
+                              f"match={match}, confidence={confidence:.2f}")
+                    
+                    if match and confidence > best_confidence:
+                        best_confidence = confidence
+                        best_match = user
+                else:
+                    logger.warning(f"Face comparison failed for user {user.email}: {result}")
+                    continue
+                    
+            except Exception as e:
+                logger.error(f"Error comparing faces for user {user.email}: {str(e)}")
+                continue
+
+        # Verify best match meets minimum confidence threshold
+        if best_match and best_confidence >= min_confidence_threshold:
+            logger.info(f"Face login successful for {best_match.email} "
+                       f"with confidence {best_confidence:.2f}")
             
-            if isinstance(result, dict):
-                confidence = result.get("confidence", 0)
-                logger.info(f"Face comparison with {user.email}: confidence={confidence}")
-                if match and confidence > best_confidence:
-                    best_confidence = confidence
-                    best_match = user
-            else:
-                comparison_errors.append(result)
-        
-        if best_match:
-            logger.info(f"Face login successful for {best_match.email} with confidence {best_confidence}")
             access_token = create_access_token(data={"sub": best_match.email})
             return Token(
                 access_token=access_token,
                 token_type="bearer",
                 id=best_match.id
             )
-
-        if comparison_errors:
+        
+        # Handle no match or low confidence
+        if best_match:
+            logger.warning(f"Face match found but confidence too low: {best_confidence:.2f}")
             raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail=f"Face detection errors: {'; '.join(comparison_errors)}"
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Face verification failed: confidence too low"
             )
-
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Face not recognized"
-        )
+        else:
+            logger.warning("No matching face found")
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="No matching face found"
+            )
 
     except HTTPException as he:
         raise he
@@ -230,5 +252,5 @@ async def login_face(
         logger.error(f"Face authentication error: {str(e)}", exc_info=True)
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Face authentication failed: {str(e)}"
+            detail="Face authentication failed. Please try again."
         )

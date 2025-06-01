@@ -278,7 +278,11 @@ async def force_close_session(
         )
 
 @router.get("/summary/{user_id}", response_model=ExamSummary)
-async def get_exam_summary(user_id: int, db: Session = Depends(get_db)):
+async def get_exam_summary(
+    user_id: int, 
+    background_tasks: BackgroundTasks,  # Add background_tasks parameter
+    db: Session = Depends(get_db)
+):
     """Get exam summary for a user"""
     try:
         # First stop the session
@@ -338,6 +342,9 @@ async def get_exam_summary(user_id: int, db: Session = Depends(get_db)):
         except Exception as e:
             logger.error(f"Failed to add summary log: {str(e)}")
             db.rollback()
+        
+        # Schedule log cleanup after 10 seconds
+        background_tasks.add_task(cleanup_logs, user_id, db, delay=10)
         
         return ExamSummary(
             total_duration=round(duration, 2),
