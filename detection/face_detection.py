@@ -2,12 +2,17 @@ import mediapipe as mp
 import numpy as np
 from utils.logger import logger
 from datetime import datetime
+from utils.head_posture import HeadPostureDetector
 
 mp_face_mesh = mp.solutions.face_mesh
+
+# Initialize face mesh with conservative settings
 face_mesh = mp_face_mesh.FaceMesh(
     max_num_faces=1,
-    refine_landmarks=True,
-    min_detection_confidence=0.5
+    refine_landmarks=False,  # Disable refinement to reduce thread usage
+    min_detection_confidence=0.5,
+    static_image_mode=True,  # Process frames independently
+    min_tracking_confidence=0.5
 )
 
 # Store previous landmarks for movement detection
@@ -48,6 +53,25 @@ def detect_face(frame):
                         "event_type": "mouth_movement"
                     })
             
+            # Add head posture detection
+            head_detector = HeadPostureDetector()
+            head_pose = head_detector.detect_head_pose(frame)
+            
+            if head_pose:
+                head_status = "centered" if head_pose['is_centered'] else "not centered"
+                direction = ""
+                if abs(head_pose['yaw']) > abs(head_pose['pitch']):
+                    direction = "looking left" if head_pose['yaw'] > 0 else "looking right"
+                else:
+                    direction = "looking up" if head_pose['pitch'] < 0 else "looking down"
+                
+                logs.append({
+                    "time": timestamp,
+                    "event": f"Head posture {direction} ({head_status})",
+                    "event_type": "head_posture"
+                })
+                logger.info(f"Head posture detected: {direction} ({head_status})")
+
             prev_landmarks = landmarks
             
     except Exception as e:
