@@ -1,20 +1,25 @@
-from fastapi import APIRouter, Depends, HTTPException, status, File, UploadFile, Form
+from fastapi import APIRouter, Depends, HTTPException, status, File, UploadFile, Form, Security
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm, HTTPBearer, HTTPAuthorizationCredentials
 from sqlalchemy.orm import Session
 from config.database import get_db
 from models.users import User
+from models.logs import Log
 from utils.face_auth import compare_faces
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
 from jose import JWTError, jwt
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 import io
 from pydantic import BaseModel, EmailStr
 import imghdr
 from schemas.auth import UserResponse, Token
 from config.settings import settings
 from utils.logger import logger
+from utils.session_manager import session_manager
+from utils.connection import manager
+from fastapi.responses import JSONResponse
 
 router = APIRouter()
+security = HTTPBearer()
 
 # Password hashing
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -253,4 +258,46 @@ async def login_face(
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Face authentication failed. Please try again."
+        )
+
+@router.post("/logout")
+async def logout(
+    credentials: HTTPAuthorizationCredentials = Security(security),
+    db: Session = Depends(get_db)
+):
+    """Logout user and cleanup their session data"""
+    try:
+        # Get current user
+        current_user = get_current_user(credentials.credentials, db)
+        user_id = current_user.id
+
+        # Clean up any active exam session
+        if manager.is_connected(user_id):
+            await manager.force_disconnect(user_id)
+            logger.info(f"Closed WebSocket connection for user {user_id}")
+
+        # Clean up session data
+        session_manager.cleanup(user_id)
+
+        # Delete all logs for the user
+        try:
+            deleted_count = db.query(Log).filter(Log.user_id == user_id).delete()
+            db.commit()
+            logger.info(f"Cleared {deleted_count} logs for user {user_id}")
+        except Exception as e:
+            logger.error(f"Failed to delete logs: {str(e)}")
+            db.rollback()
+
+        return JSONResponse(
+            status_code=status.HTTP_200_OK,
+            content={"message": "Successfully logged out and cleaned up session data"}
+        )
+
+    except HTTPException as he:
+        raise he
+    except Exception as e:
+        logger.error(f"Logout error: {str(e)}")
+        return JSONResponse(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            content={"error": "Failed to complete logout"}
         )

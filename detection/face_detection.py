@@ -60,10 +60,11 @@ def detect_face(frame):
             if head_pose:
                 head_status = "centered" if head_pose['is_centered'] else "not centered"
                 direction = ""
+                # Determine the primary motion (larger angle)
                 if abs(head_pose['yaw']) > abs(head_pose['pitch']):
                     direction = "looking left" if head_pose['yaw'] > 0 else "looking right"
                 else:
-                    direction = "looking up" if head_pose['pitch'] < 0 else "looking down"
+                    direction = "looking up" if head_pose['pitch'] > 0 else "looking down"
                 
                 logs.append({
                     "time": timestamp,
