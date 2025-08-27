@@ -12,14 +12,16 @@ DATABASE_URL = (
 
 logger.info(f"Using database: {settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}")
 
-# Create engine without SSL for local development
+# Create engine with retry logic
 engine = create_engine(
     DATABASE_URL,
     pool_pre_ping=True,
     pool_recycle=3600,
+    pool_size=5,
+    max_overflow=10,
     connect_args={
-        "use_pure": True,  # Use pure Python implementation
-        "auth_plugin": 'mysql_native_password'  # Use native password auth
+        "charset": "utf8mb4",
+        "connect_timeout": 60
     }
 )
 
@@ -37,4 +39,5 @@ def get_db():
     try:
         yield db
     finally:
+        db.close()
         db.close()

@@ -52,6 +52,41 @@ A real-time AI proctoring system that monitors exam sessions using computer visi
 
 ## Setup
 
+### Using Docker (Recommended)
+
+1. Build and run using Docker Compose:
+```bash
+docker-compose up --build
+```
+
+### Docker Troubleshooting
+
+If you encounter the error "Cannot connect to the Docker daemon":
+
+1. Make sure Docker Desktop is installed and running
+2. On macOS:
+   ```bash
+   # Start Docker Desktop from terminal
+   open -a Docker
+   
+   # Wait for Docker to start (about 30 seconds)
+   # Then try running docker-compose again
+   docker-compose up --build
+   ```
+
+3. Verify Docker is running:
+   ```bash
+   docker info
+   ```
+
+2. Or run with Docker directly:
+```bash
+docker build -t proctoring-ai .
+docker run -p 8000:8000 proctoring-ai
+```
+
+### Manual Setup
+
 1. Clone the repository:
 ```bash
 git clone https://github.com/yourusername/Proctoring-AI-BE.git

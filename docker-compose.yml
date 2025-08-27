@@ -1,32 +1,38 @@
-version: '3.8'
-
 services:
   web:
     build: .
     ports:
-      - "8080:8080"
+      - "8000:8000"
+    volumes:
+      - .:/app
     environment:
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=db
-      - DB_NAME=${DB_NAME}
-      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
-      - JWT_ALGORITHM=${JWT_ALGORITHM}
-      - JWT_ACCESS_TOKEN_EXPIRE_MINUTES=${JWT_ACCESS_TOKEN_EXPIRE_MINUTES}
+      - MYSQL_DATABASE=proctoring_ai
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_USER=root
+      - MYSQL_HOST=db
+      - MYSQL_PORT=3306
     depends_on:
       - db
-    volumes:
-      - ./logs:/app/logs
+    command: sh -c "pip install -r requirements.txt && ./start.sh"
 
   db:
     image: mysql:8.0
+    platform: linux/amd64
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=proctoring_ai
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=password
     ports:
       - "3306:3306"
-    environment:
-      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
-      - MYSQL_DATABASE=${DB_NAME}
     volumes:
-      - mysql_data:/var/lib/mysql
+      - db_data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
-  mysql_data:
+  db_data:

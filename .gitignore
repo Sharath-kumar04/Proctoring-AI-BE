@@ -1,5 +1,7 @@
 __pycache__/
 myenv/
 .venv/
-.env
+# .env
 venv/
+logs/
+logs/*
