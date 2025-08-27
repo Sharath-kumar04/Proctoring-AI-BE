@@ -6,7 +6,7 @@ from models.logs import Log
 from schemas.exam import ExamSummary
 from datetime import datetime, timedelta
 from sqlalchemy import func
-from typing import Dict, Optional
+from typing import Dict, Optional, List
 from pydantic import BaseModel
 from utils.connection import manager  # Import manager from new module
 import secrets
@@ -62,61 +62,69 @@ def get_session_info(user_id: int, db: Session = Depends(get_db)):
     )
 
 @router.post("/start/{user_id}")
-def start_exam_session(
+async def start_exam_session(
     user_id: int,
     credentials: HTTPAuthorizationCredentials = Security(security),
     db: Session = Depends(get_db)
 ):
     """Start exam session with authorization"""
-    # Verify user authorization with the new get_current_user function
-    current_user = get_current_user(credentials.credentials, db)
-    if current_user.id != user_id:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Not authorized to start this session"
-        )
-    
-    session_info = get_session_info(user_id, db)
-    base_url = "ws://localhost:8080/ws"
-    
-    # Generate session ID and tokens
-    session_id = secrets.token_hex(16)
-    ws_token = create_access_token({
-        "sub": str(user_id),
-        "session": session_id,
-        "type": "websocket"
-    })
-    
-    if manager.is_connected(user_id):
+    try:
+        # Extract token and verify
+        token = credentials.credentials
+        current_user = get_current_user(token, db)
+        
+        if current_user.id != user_id:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Not authorized to start this session"
+            )
+        
+        session_info = get_session_info(user_id, db)
+        base_url = "ws://localhost:8080/ws"
+        
+        # Generate WebSocket tokens
+        ws_token = create_access_token({
+            "sub": str(user_id),
+            "session": secrets.token_hex(16),
+            "type": "websocket"
+        })
+        
+        if manager.is_connected(user_id):
+            return {
+                "message": "Session already running",
+                "status": "running",
+                "wsUrl": f"{base_url}/{user_id}",
+                "wsConfig": {
+                    "token": ws_token,
+                    "additionalParams": {
+                        "userId": user_id,
+                        "startTime": session_info.start_time.isoformat() if session_info.start_time else None,
+                        "duration": session_info.duration
+                    }
+                }
+            }
+        
         return {
-            "message": "Session already running",
-            "status": "running",
+            "message": "Start new session",
+            "status": "ready",
             "wsUrl": f"{base_url}/{user_id}",
             "wsConfig": {
-                "sessionId": session_id,
                 "token": ws_token,
                 "additionalParams": {
                     "userId": user_id,
-                    "startTime": session_info.start_time.isoformat() if session_info.start_time else None,
-                    "duration": session_info.duration
+                    "maxDuration": 7200,
+                    "keepAliveInterval": 15000
                 }
             }
         }
-    
-    return {
-        "message": "Start new session",
-        "status": "ready",
-        "wsUrl": f"{base_url}/{user_id}",
-        "wsConfig": {
-            "sessionId": session_id,
-            "token": ws_token,
-            "additionalParams": {
-                "userId": user_id,
-                "maxDuration": 7200,  # 2 hours in seconds
-                "keepAliveInterval": 15000  # 15 seconds in milliseconds
-            }
-        }
-    }
+    except HTTPException as he:
+        raise he
+    except Exception as e:
+        logger.error(f"Start session error: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to start session"
+        )
 
 @router.post("/pause/{user_id}")
 def pause_exam_session(user_id: int):
@@ -310,8 +318,6 @@ async def get_exam_summary(
         end_time = max(log.timestamp for log in logs)
         duration = (end_time - start_time).total_seconds() / 60
         
-        suspicious_activities: Dict[str, int] = {}
-        total_checks = len(logs)
         face_detections = 0
         non_suspicious_events = {
             "face_detected", 
@@ -320,20 +326,42 @@ async def get_exam_summary(
             "person_detected"  # Add normal person detection as non-suspicious
         }
         
+        violation_tracking: Dict[str, List[Dict]] = {}
         for log in logs:
             if log.event_type == "face_detected":
                 face_detections += 1
-            elif log.event_type == "person_detected":
-                # Only count as suspicious if above threshold
-                if log.confidence and float(log.confidence) > SUSPICIOUS_ACTIVITY_THRESHOLD:
-                    suspicious_activities["multiple_people"] = suspicious_activities.get("multiple_people", 0) + 1
             elif log.event_type not in non_suspicious_events:
-                suspicious_activities[log.event_type] = suspicious_activities.get(log.event_type, 0) + 1
+                if log.event_type not in violation_tracking:
+                    violation_tracking[log.event_type] = []
+                
+                violation_tracking[log.event_type].append({
+                    "timestamp": log.timestamp,
+                    "event": log.log
+                })
+
+        # Process violations
+        suspicious_activities = {}
+        for event_type, violations in violation_tracking.items():
+            if len(violations) > 10:
+                # For frequent violations, show first timestamp
+                first_violation = min(violations, key=lambda x: x["timestamp"])
+                suspicious_activities[event_type] = {
+                    "count": len(violations),
+                    "first_occurrence": first_violation["timestamp"].isoformat()
+                }
+            else:
+                # For infrequent violations, just show count
+                suspicious_activities[event_type] = len(violations)
+
+        # Calculate suspicious weight correctly
+        suspicious_weight = sum(
+            violation["count"] if isinstance(violation, dict) else violation
+            for violation in suspicious_activities.values()
+        )
         
-        # Calculate compliance metrics
-        face_detection_rate = (face_detections / total_checks) * 100 if total_checks > 0 else 0
-        suspicious_weight = sum(suspicious_activities.values())
-        overall_compliance = max(0, face_detection_rate - (suspicious_weight / total_checks * 20))
+        # Calculate overall compliance
+        face_detection_rate = (face_detections / len(logs)) * 100 if len(logs) > 0 else 0
+        overall_compliance = max(0, face_detection_rate - (suspicious_weight / len(logs) * 20))
         
         # Add final summary log
         try:
