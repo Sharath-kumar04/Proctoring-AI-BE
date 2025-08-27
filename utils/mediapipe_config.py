@@ -1,26 +1,31 @@
 import os
+import multiprocessing
 from utils.logger import logger
 
 def configure_mediapipe():
-    """Configure MediaPipe with conservative thread settings for macOS"""
+    """Configure MediaPipe with optimized thread settings for macOS"""
     try:
-        # Basic MediaPipe configuration
+        # Set minimal thread count
+        max_threads = min(2, multiprocessing.cpu_count())
+        
+        # Core MediaPipe configuration
         os.environ["MEDIAPIPE_CPU_ONLY"] = "1"
         os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+        os.environ["OMP_NUM_THREADS"] = str(max_threads)
+        os.environ["MEDIAPIPE_NUM_THREADS"] = str(max_threads)
         
         # Thread pool configuration
-        os.environ["MEDIAPIPE_CPU_THREADS"] = "1"  # Minimum thread count
-        os.environ["OMP_NUM_THREADS"] = "1"  # OpenMP threads
-        os.environ["MEDIAPIPE_THREAD_STACK_SIZE"] = "131072"  # 128KB stack size
+        os.environ["MEDIAPIPE_USE_MINIMAL_THREADPOOL"] = "true"
+        os.environ["MEDIAPIPE_THREAD_PRIORITY"] = "background"
+        os.environ["MEDIAPIPE_MAX_CACHED_THREADPOOL_SIZE"] = "1"
         
         # Resource limits
-        os.environ["MEDIAPIPE_USE_MINIMAL_THREADPOOL"] = "true"
-        os.environ["MEDIAPIPE_THREAD_PRIORITY"] = "normal"
+        os.environ["MEDIAPIPE_THREAD_STACK_SIZE"] = "262144"  # 256KB stack
+        os.environ["MEDIAPIPE_USE_THREAD_PRIORITIES"] = "false"
+        os.environ["MEDIAPIPE_USE_GPU"] = "false"
         
-        # Face mesh specific configuration
-        os.environ["MEDIAPIPE_FACE_MESH_MODEL_PATH"] = "mediapipe/modules/face_detection/face_detection_front.tflite"
-        os.environ["MEDIAPIPE_FACE_MESH_WITH_ATTENTION"] = "true"
-        
-        logger.info("MediaPipe configured with minimal threading mode and face mesh support")
+        logger.info(f"MediaPipe configured with {max_threads} threads in minimal mode")
+        return True
     except Exception as e:
-        logger.error(f"Failed to configure MediaPipe: {str(e)}")
+        logger.error(f"MediaPipe configuration failed: {str(e)}")
+        return False

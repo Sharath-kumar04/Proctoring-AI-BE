@@ -12,11 +12,13 @@ def generate_secret_key():
 
 class Settings(BaseSettings):
     # Database settings
+    DB_TYPE: str = Field(default="sqlite", env="DB_TYPE")  # 'mysql' or 'sqlite'
     DB_USER: str = Field(default="root", env="MYSQLUSER")
-    DB_PASSWORD: str = Field(default="1234567890", env="MYSQL_ROOT_PASSWORD")
+    DB_PASSWORD: str = Field(default="mysecretpassword", env="MYSQL_ROOT_PASSWORD")
     DB_HOST: str = Field(default="localhost", env="MYSQLHOST")
-    DB_NAME: str = Field(default="Proctoring_AI", env="MYSQL_DATABASE")
+    DB_NAME: str = Field(default="proctoring_ai", env="MYSQL_DATABASE")
     DB_PORT: int = Field(default=3306, env="MYSQLPORT")
+    SQLITE_URL: str = Field(default="sqlite:///./test.db")
 
     # JWT settings
     JWT_SECRET_KEY: str = Field(default_factory=generate_secret_key)

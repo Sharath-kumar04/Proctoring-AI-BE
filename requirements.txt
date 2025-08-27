@@ -8,38 +8,40 @@
 # Core dependencies
 flask==2.2.5
 requests==2.31.0
-numpy>=1.24.3
+numpy==1.24.3
 pandas>=2.0.3
 scikit-learn>=1.0.2
 matplotlib>=3.5.3
-uvicorn>=0.23.2
-websockets>=11.0.3
-fastapi>=0.95.2
+
+# FastAPI and related
+fastapi==0.103.2
+uvicorn==0.23.2
+websockets==11.0.3
+pydantic>=2.4.2
+pydantic-settings>=2.0.3
 
 # ML/CV dependencies
-ultralytics>=8.0.0,<9.0.0  # Pin version range for stability
-opencv-python-headless==4.10.0.84
-mediapipe>=0.10.5
-torch>=2.0.1 --extra-index-url https://download.pytorch.org/whl/cpu
-torchvision>=0.15.2 --extra-index-url https://download.pytorch.org/whl/cpu
+ultralytics>=8.0.0,<9.0.0
+opencv-python-headless==4.10.0.84  # Updated to match Roboflow requirement
+mediapipe==0.10.5
+torch>=2.0.1
+torchvision>=0.15.2
 
-# Face Recognition dependencies
+# Face Recognition
 tensorflow==2.15.0
-tf-keras==2.15.0  # Pin specific version
-keras>=2.15.0     # Add explicit keras dependency
-deepface==0.0.79  # Pin specific version
-retina-face>=0.0.13  # Add for face detection backend
+tf-keras==2.15.0
+keras>=2.15.0
+deepface==0.0.79
+retina-face>=0.0.13
 
-# Database and auth dependencies
-mysql-connector-python>=8.0.33
-SQLAlchemy>=2.0.23
-python-multipart>=0.0.6
-python-jose[cryptography]>=3.3.0
-passlib[bcrypt]>=1.7.4
+# Database and auth
+mysql-connector-python==8.0.33
+SQLAlchemy==2.0.23
+python-multipart==0.0.6
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
 email-validator>=2.0.0
 roboflow>=1.1.58
 
-# Configuration dependencies
-python-dotenv>=1.0.0
-pydantic>=2.0.0
-pydantic-settings>=2.0.0
+# Configuration
+python-dotenv==1.0.0

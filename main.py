@@ -1,7 +1,5 @@
-from fastapi import (
-    FastAPI, WebSocket, HTTPException, Request, 
-    Depends, WebSocketDisconnect, status, Security
-)
+import os
+from fastapi import FastAPI, WebSocket, Depends, HTTPException, Request, WebSocketDisconnect, status, Security
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials, OAuth2PasswordBearer
 from jose import JWTError, jwt
 from fastapi.responses import JSONResponse
@@ -16,7 +14,7 @@ from detection.face_detection import detect_face
 from detection.hand_detection import detect_hands
 from detection.face_mesh_detection import detect_face_mesh
 from detection.yolo_detection import detect_yolo
-from config.database import init_db, get_db, engine  # Add engine import
+from config.database import Base, get_db, create_db_engine  # Add engine and Base import
 from models.logs import Log
 from models.users import User
 from routers.auth import SECRET_KEY, ALGORITHM
@@ -59,36 +57,26 @@ class WebSocketException(Exception):
 
 app = FastAPI()
 
-# Initialize database and models on startup
 @app.on_event("startup")
 async def startup_event():
     try:
-        # Configure MediaPipe first
-        configure_mediapipe()
-        logger.info("MediaPipe configured successfully")
+        logger.info("Initializing database connection...")
+        engine = create_db_engine()
         
-        # Test database connection before init
-        try:
-            with engine.connect() as conn:
-                conn.execute(text("SELECT 1"))
-                logger.info("Database connection test successful")
-        except Exception as e:
-            logger.error(f"Database connection failed: {str(e)}")
-            raise
+        if engine is None:
+            raise Exception("Failed to create database engine")
+            
+        # Test connection
+        with engine.connect() as conn:
+            conn.execute(text("SELECT 1"))
+        logger.info("Database connection successful")
         
-        # Initialize database
-        init_db()
-        logger.info("Database initialized successfully")
-        
-        # Initialize YOLO model
-        from detection.yolo_detection import load_model
-        if load_model():
-            logger.info("YOLO model loaded successfully")
-        else:
-            logger.warning("YOLO model initialization failed")
+        # Initialize tables
+        Base.metadata.create_all(bind=engine)
+        logger.info("Database tables created successfully")
         
     except Exception as e:
-        logger.error(f"Startup failed: {str(e)}", exc_info=True)
+        logger.error(f"Failed to initialize database: {str(e)}")
         raise
 
 # Add CORS middleware
@@ -211,16 +199,33 @@ async def websocket_endpoint(
 
     except Exception as e:
         logger.error(f"WebSocket error for user {user_id}: {str(e)}")
-        
     finally:
         if connection_established:
             logger.info(f"Cleaning up connection for user {user_id}")
             await manager.disconnect(user_id)
-        try:
-            db.close()
-        except:
-            pass
+            try:
+                db.close()
+            except:
+                pass
 
 if __name__ == "__main__":
     import uvicorn
+    try:
+        uvicorn.run("main:app", host="localhost", port=8080, reload=True)
+        uvicorn.run("main:app", host="localhost", port=8080, reload=True)
+    
+    finally:
+        db.close()
+
+if __name__ == "__main__":
+    import uvicorn
+    try:
+        uvicorn.run("main:app", host="localhost", port=8080, reload=True)
+        uvicorn.run("main:app", host="localhost", port=8080, reload=True)
+    finally:
+        db.close()
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="localhost", port=8080, reload=True)
     uvicorn.run("main:app", host="localhost", port=8080, reload=True)
