@@ -339,23 +339,19 @@ async def get_exam_summary(
                     "event": log.log
                 })
 
-        # Process violations
+        # Process violations - only include those with more than 10 occurrences
         suspicious_activities = {}
         for event_type, violations in violation_tracking.items():
             if len(violations) > 10:
-                # For frequent violations, show first timestamp
                 first_violation = min(violations, key=lambda x: x["timestamp"])
                 suspicious_activities[event_type] = {
                     "count": len(violations),
                     "first_occurrence": first_violation["timestamp"].isoformat()
                 }
-            else:
-                # For infrequent violations, just show count
-                suspicious_activities[event_type] = len(violations)
-
-        # Calculate suspicious weight correctly
+                
+        # Calculate suspicious weight only for frequent violations
         suspicious_weight = sum(
-            violation["count"] if isinstance(violation, dict) else violation
+            violation["count"]
             for violation in suspicious_activities.values()
         )
         
