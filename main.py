@@ -118,9 +118,7 @@ async def websocket_endpoint(
     user_id: int, 
     db: Session = Depends(get_db)
 ):
-    logger.info(f"WebSocket connection attempt for user {user_id}")
     connection_established = False
-    
     try:
         # Token validation
         token = websocket.query_params.get('token')
@@ -209,6 +207,8 @@ async def websocket_endpoint(
                 pass
 
 if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="localhost", port=8080, reload=True)
     import uvicorn
     try:
         uvicorn.run("main:app", host="localhost", port=8080, reload=True)

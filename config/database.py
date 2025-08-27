@@ -1,14 +1,12 @@
-from sqlalchemy import create_engine, exc
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from config.settings import settings
 from utils.logger import logger
 import os
 
-# Create base class for models
 Base = declarative_base()
 
-# Use SQLite for local development if MySQL is not available
 def get_database_url():
     """Get database URL based on configuration"""
     if settings.DB_TYPE.lower() == "sqlite":
@@ -51,22 +49,27 @@ def create_db_engine():
     return None
 
 engine = create_db_engine()
-
-# Create session factory
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-def init_db():
-    Base.metadata.create_all(bind=engine)
-
 def get_db():
+    """Synchronous database session dependency"""
     db = SessionLocal()
     try:
         yield db
     finally:
-        db.close()
+        if db is not None:
+            db.close()
+
+def get_async_db():
+    """Async database session dependency"""
     db = SessionLocal()
     try:
         yield db
     finally:
-        db.close()
+        if db is not None:
+            db.close()
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
         db.close()

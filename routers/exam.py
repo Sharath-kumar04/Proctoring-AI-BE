@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Security, BackgroundTasks
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from sqlalchemy.orm import Session
-from config.database import get_db
+from config.database import get_db, SessionLocal
 from models.logs import Log
 from schemas.exam import ExamSummary
 from datetime import datetime, timedelta
@@ -138,16 +138,21 @@ def resume_exam_session(user_id: int):
         detail="No active session found"
     )
 
-async def cleanup_logs(user_id: int, db: Session, delay: int = 30):
+async def cleanup_logs(user_id: int, delay: int = 30):
     """Delete logs after specified delay"""
+    await asyncio.sleep(delay)
+    
+    db = SessionLocal()
     try:
-        await asyncio.sleep(delay)
         deleted_count = db.query(Log).filter(Log.user_id == user_id).delete()
         db.commit()
         logger.info(f"Cleaned up {deleted_count} logs for user {user_id}")
     except Exception as e:
         logger.error(f"Failed to cleanup logs: {str(e)}")
         db.rollback()
+    finally:
+        if db is not None:
+            db.close()
 
 async def handle_session_cleanup(user_id: int, db: Session, event_type: str = "session_ended"):
     """Helper to handle session cleanup operations"""
@@ -280,7 +285,7 @@ async def force_close_session(
 @router.get("/summary/{user_id}", response_model=ExamSummary)
 async def get_exam_summary(
     user_id: int, 
-    background_tasks: BackgroundTasks,  # Add background_tasks parameter
+    background_tasks: BackgroundTasks,
     db: Session = Depends(get_db)
 ):
     """Get exam summary for a user"""
@@ -343,8 +348,8 @@ async def get_exam_summary(
             logger.error(f"Failed to add summary log: {str(e)}")
             db.rollback()
         
-        # Schedule log cleanup after 10 seconds
-        background_tasks.add_task(cleanup_logs, user_id, db, delay=10)
+        # Schedule cleanup
+        background_tasks.add_task(cleanup_logs, user_id)
         
         return ExamSummary(
             total_duration=round(duration, 2),
@@ -353,13 +358,11 @@ async def get_exam_summary(
             overall_compliance=round(overall_compliance, 2)
         )
         
-    except HTTPException as he:
-        raise he
     except Exception as e:
-        logger.error(f"Error generating exam summary: {str(e)}")
+        logger.error(f"Error generating summary: {str(e)}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Failed to generate exam summary"
+            detail="Failed to generate summary"
         )
 
 @router.post("/clear-logs/{user_id}")
