@@ -3,7 +3,8 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from sqlalchemy.orm import Session
 from config.database import get_db, SessionLocal
 from models.logs import Log
-from schemas.exam import ExamSummary
+from models.users import User  # Add User model import
+from schemas.exam import ExamSummary, UserInfo
 from datetime import datetime, timedelta
 from sqlalchemy import func
 from typing import Dict, Optional, List
@@ -15,6 +16,7 @@ from fastapi.responses import JSONResponse
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
 from utils.logger import logger
+import base64
 
 router = APIRouter()
 security = HTTPBearer()
@@ -375,11 +377,28 @@ async def get_exam_summary(
         # Schedule cleanup
         background_tasks.add_task(cleanup_logs, user_id)
         
+        # Get user info
+        user = db.query(User).filter(User.id == user_id).first()
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="User not found"
+            )
+            
+        # Convert image to base64 if exists
+        user_image = None
+        if user.image:
+            user_image = base64.b64encode(user.image).decode('utf-8')
+        
         return ExamSummary(
             total_duration=round(duration, 2),
             face_detection_rate=round(face_detection_rate, 2),
             suspicious_activities=suspicious_activities,
-            overall_compliance=round(overall_compliance, 2)
+            overall_compliance=round(overall_compliance, 2),
+            user=UserInfo(
+                email=user.email,
+                image=user_image
+            )
         )
         
     except Exception as e:
