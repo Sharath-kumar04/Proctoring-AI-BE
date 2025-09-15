@@ -9,7 +9,7 @@ if [ -z "$JWT_SECRET_KEY" ]; then
 fi
 
 # Set default port if not set
-PORT="${PORT:-8000}"
+PORT="${PORT:-8080}"
 HOST="${SERVER_HOST:-0.0.0.0}"
 
 # Start the application using uvicorn

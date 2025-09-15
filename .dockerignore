@@ -11,3 +11,10 @@ logs/
 .env-*
 myenv/
 .venv/
+venv/
+dist/
+build/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/

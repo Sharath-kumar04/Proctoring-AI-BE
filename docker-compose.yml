@@ -1,38 +1,63 @@
+name: proctoring-ai
+
 services:
   web:
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
     volumes:
-      - .:/app
+      - ./logs:/app/logs
     environment:
       - MYSQL_DATABASE=proctoring_ai
       - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_USER=root
-      - MYSQL_HOST=db
-      - MYSQL_PORT=3306
+      - MYSQLUSER=root
+      - MYSQLHOST=db
+      - MYSQLPORT=3306
     depends_on:
-      - db
-    command: sh -c "pip install -r requirements.txt && ./start.sh"
+      db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
 
   db:
-    image: mysql:8.0
-    platform: linux/amd64
+    image: mariadb:10.6
+    platform: linux/arm64
     environment:
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=proctoring_ai
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=password
+      - MARIADB_ROOT_PASSWORD=password
+      - MARIADB_DATABASE=proctoring_ai
+      - MARIADB_USER=root
+      - MARIADB_PASSWORD=password
     ports:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+      - ./scripts/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
     command: --default-authentication-plugin=mysql_native_password
     healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MARIADB_ROOT_PASSWORD"]
       interval: 10s
       timeout: 5s
       retries: 5
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+    restart: unless-stopped
 
 volumes:
   db_data:
+    driver: local
